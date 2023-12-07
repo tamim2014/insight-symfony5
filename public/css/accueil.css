@@ -1,0 +1,79 @@
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 14.1%;
+        /* tester sur d'autre ecran. si cv pas=> calculer la hauteur en fonction de la hauteur du navbar horizontal*/
+        left: 0;
+        height: 100%;
+        width: 0;
+
+        padding-top: 60px;
+        overflow-x: hidden;
+        /* background-color: #111; */
+        background-color: inherit;
+        border: 1px solid gray;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    .sidebar a {
+        display: block;
+        padding: 8px 8px 8px 32px;
+
+        font-size: 25px;
+        text-decoration: none;
+        color: #818181;
+        transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .openbtn {
+        font-size: 15px;
+        cursor: pointer;
+        background-color: inherit;
+        color: #777;
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+    }
+
+    .openbtn:hover {
+        background-color: #ddd;
+        border: none;
+        outline: none;
+    }
+
+    .closebtn {
+        font-size: 15px;
+    }
+
+    #main {
+        padding: 16px;
+        transition: margin-left 0.5s;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and(max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
+        }
+
+        .sidebar a {
+            font-size: 18px;
+        }
+    }
+

@@ -1,0 +1,39 @@
+
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+         .example-wrapper {margin: 5em auto; max-width: 800px; width: 95%; font: 1.1em sans-serif; }	 
+	</style>
+	<div class="example-wrapper">
+	    {# <p>Vous avez modifié  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
+		<p id="cible">Choisir le numéro du produit à modifier </p><hr>
+		<p><span onclick="recup();">23</span></p>
+		<!-- <p  id="cible">Récuperer ici</p> -->
+		<p>		    			
+			{% for product in produits %}			
+				<table>
+					<tr><td></td><td></td></tr>
+					<tr><td>{{ product.id}}</td><td>{{product.name }}</td></tr>
+					<tr><td></td><td></td></tr>
+				</table>
+			{% endfor %}
+		</p>
+		<small><i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a></i></small>
+	</div>
+        {#<script type="text/javascript" src="{{ asset('js/avant-update.js') }}"></script> #}
+       
+	   <script>
+		    function recup(){
+			   let p =  document.getElementsByTagName("span")[0].innerHTML;
+			   let cible= document.getElementById("cible");
+			   
+			   cible.innerHTML = p;
+			   
+			}
+		</script>
+		
+
+{% endblock %}
+

@@ -1,0 +1,33 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+	    h5:nth-child(even) { background-color: #dddddd; }
+	</style>
+
+	<div class="example-wrapper">
+   {#  <h3> Réussie !  Vous avez {{newtask.task}} à la {{newtask.id}}ème ligne </h3> #}
+      <h3> Insertion validée !</h3>
+
+
+
+
+		{#  {{maDate|date('d/m/Y')}} converti la date en français - c ça un bon filtre ! #}
+		{% for tache in taches %}
+            <h5>
+				<span> {{ tache.id }}.....{{ tache.task }}.....{{ tache.dueDate|date('d/m/Y') }}</span>
+				<span></span>
+			</h5>
+		{% endfor %}
+        Source1:<a href="https://nouvelle-techno.fr/articles/8-integrer-les-donnees-dans-les-vues-symfony-6" target="_blanck">BD:Accès en lecture </a><br>
+		Source2:<a href="https://nouvelle-techno.fr/articles/mot-cle/donnees" target="_blanck">nouvelle-techno.fr</a>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,32 @@
+		.dropdown {
+
+		    overflow: hidden;
+		    float: left;
+		    padding: 8.5px 16px;
+		}
+
+		.dropdown-btn {
+		    border: none !important;
+		    outline: none !important;
+		    margin: 0;
+		    background-color: inherit;
+		}
+
+		.dropdown-content {
+		    display: block !important;
+		    position: absolute;
+		    background-color: #ddd;
+		    min-width: 160px;
+		    z-index: 3;
+		    margin: 17px 0px 0px -15px;
+		    /*ajuster le dropdown-content sous le dropdown */
+		}
+
+		div.dropdown:hover div.dropdown-content {
+		    display: block;
+		}
+
+		#menu .dropdown-content a {
+		    display: block;
+		    float: none;
+		}
