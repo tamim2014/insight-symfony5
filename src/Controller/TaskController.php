@@ -57,6 +57,46 @@ class TaskController extends AbstractController
             
         ]);
     }
+
+    /**
+     * @Route("/task_edit/{id}", name="task_edit")
+     */
+    public function updateTask(Request $request, EntityManagerInterface $entityManager, int $id, TaskRepository $taskRepository): Response
+    {
+        $task = $entityManager->getRepository(Task::class)->find($id);
+        //$task = $entityManager->getRepository(Task::class)->getId(); // !!! c'est là q ça s'passe !!!
+        if (!$task) {
+            throw $this->createNotFoundException('No task found for id ' . $id);
+        }
+        $task->setTask('container symfony');
+        $task->setDueDate(new \DateTime('tomorrow')); 
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            $entityManager->persist($task);
+            $entityManager->flush(); // the INSERT query
+            // Redirection (suite au clic sur le bouton save)
+            //return new Response('Tâche prévue: ' . $task->getTask() .'|Tâche numéro: '.$task->getId() );
+            return $this->redirectToRoute('task_updated');
+        }
+        return $this->renderForm('task/task_update.html.twig', [
+
+            'form' => $form
+        ]);
+    }
+    /**
+     *@Route("/task_updated", name="task_updated")
+     */
+    public function confirmUpdateTask(TaskRepository $taskRepository): Response
+    {
+        return $this->render('task/confirmUpdateTask.html.twig', [
+            // 'taches' => $taskRepository->findBy([], ['taskOrder' => 'asc'])
+            'taches' => $taskRepository->findBy([]),
+
+        ]);
+    }
+
     /**
      * @Route("/toustaches", name="show_all_task")
      */
