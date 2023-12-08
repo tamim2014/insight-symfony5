@@ -1,0 +1,43 @@
+
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+    <style>
+        .example-wrapper { margin: 5em auto; max-width: 800px; width: 95%; font: 1.1em sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        h4 {text-decoration:underline;} 
+    </style>
+
+    <div class="example-wrapper">
+         {{ form(form) }}
+    {# <p>Vous avez modifié  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
+    {# {{ form(form) }} #}
+	<hr>
+   <!-- <p> Choisir le numéro du produit à modifier</p> -->
+   <p>Vous avez ajouté  le <b>{{ produit.id }}</b>ème produit:  Un <b>{{ produit.name }}</b> </p><hr>
+
+	{% for product in produits %}
+				<table><tr><td></td><td></td><td></td><td></td></tr>
+					<tr>
+						<td>{{ product.id }}</td>
+						<td>{{ product.name }}</td>
+						<td>{{ product.price }}</td>
+						<td>{{ product.description }}</td>
+					</tr>
+				<tr><td></td><td></td><td></td><td></td></tr></table>
+	{% endfor %}
+
+
+
+    </div>
+<small>
+	<i style="color:gray"><a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">SensioLabs1</a>
+	</i>
+</small>
+<small style="bottom:0; color:gray">
+	<a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blanck" style="text-decoration:none">SensioLabs2</a>
+</small>
+
+
+{% endblock %}
