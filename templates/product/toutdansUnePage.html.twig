@@ -10,34 +10,29 @@
     </style>
 
     <div class="example-wrapper">
-         {{ form(form) }}
-    {# <p>Vous avez modifié  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
-    {# {{ form(form) }} #}
-	<hr>
-   <!-- <p> Choisir le numéro du produit à modifier</p> -->
-   <p>Vous avez ajouté  le <b>{{ produit.id }}</b>ème produit:  Un <b>{{ produit.name }}</b> </p><hr>
+        {{ form(form) }}
+		
+	    <!-- <p> Pour la page update: Choisir le numéro du produit à modifier</p> -->
 
-	{% for product in produits %}
-				<table><tr><td></td><td></td><td></td><td></td></tr>
-					<tr>
-						<td>{{ product.id }}</td>
-						<td>{{ product.name }}</td>
-						<td>{{ product.price }}</td>
-						<td>{{ product.description }}</td>
-					</tr>
-				<tr><td></td><td></td><td></td><td></td></tr></table>
-	{% endfor %}
+        {# {% if(produit.id) %}: affichage du resultat Seulement en cas d'opération #}
 
-
-
+		{% if(produit.id) %} 
+		   
+	        <p>Vous avez ajouté  le <b>{{ produit.id }}</b>ème produit:  Un <b>{{ produit.name }}</b> à <b>{{ produit.price }}€</b> </p>
+		
+			{% for product in produits %}
+						<table><tr><td></td><td></td><td></td><td></td></tr>
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.price }}€</td>
+								<td>{{ product.description }}</td>
+							</tr>
+						<tr><td></td><td></td><td></td><td></td></tr></table>
+			{% endfor %}
+		{% endif %}
     </div>
-<small>
-	<i style="color:gray"><a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">SensioLabs1</a>
-	</i>
-</small>
-<small style="bottom:0; color:gray">
-	<a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blanck" style="text-decoration:none">SensioLabs2</a>
-</small>
-
+    <small><i style="color:gray"><a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">SensioLabs1</a></i></small> &emsp;
+    <small style="bottom:0; color:gray"><a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blanck" style="text-decoration:none">SensioLabs2</a></small>
 
 {% endblock %}

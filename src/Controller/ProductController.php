@@ -37,9 +37,9 @@ class ProductController extends AbstractController
         // Instancier un objet Product
         $product = new Product();
         // Si tu veux(initialiser les champs)
-        $product->setName('PC');
-        $product->setPrice(3000);
-        $product->setDescription('multi-processeurs');
+        $product->setName('');
+        $product->setPrice(0);
+        $product->setDescription('');
         // createForm() remplace  createFormBuilder() 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
