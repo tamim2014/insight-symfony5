@@ -12,20 +12,19 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 */
+
 use Doctrine\ORM\EntityManagerInterface; //pour la persistance 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/task", name="app_task")
+     * @Route("/task", name="add_task")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response 
+    public function nouvelleTache(Request $request, EntityManagerInterface $entityManager, TaskRepository $taskRepository): Response 
     {
         // Instancier un objet Task
         $task = new Task();
@@ -39,26 +38,14 @@ class TaskController extends AbstractController
             $task = $form->getData();   
             $entityManager->persist($task);
             $entityManager->flush(); // the INSERT query
-            // Redirection (suite au clic sur le bouton save)
-            //return new Response('Tâche prévue: ' . $task->getTask() .'|Tâche numéro: '.$task->getId() );
-             return $this->redirectToRoute('task_success');
         }
-        return $this->renderForm('task/new.html.twig', [   
-            'form' => $form 
+        return $this->renderForm('task/nouvelleTache.html.twig', [   
+            'form' => $form ,
+            'tache' => $task,
+            'taches' => $taskRepository->findBy([])
         ]);    
     }
 
-    /**
-     *@Route("/task_success", name="task_success")
-     */
-    public function confirm(TaskRepository $taskRepository): Response
-    {
-        return $this->render('task/confirm.html.twig', [
-            // 'taches' => $taskRepository->findBy([], ['taskOrder' => 'asc'])
-            'taches' => $taskRepository->findBy([]),
-            
-        ]);
-    }
 
     /**
      * @Route("/task_edit/{id}", name="task_edit")

@@ -17,9 +17,7 @@
         {# {% if(produit.id) %}: affichage du resultat Seulement en cas d'opération #}
 
 		{% if(produit.id) %} 
-		   
 	        <p>Vous avez ajouté  le <b>{{ produit.id }}</b>ème produit:  Un <b>{{ produit.name }}</b> à <b>{{ produit.price }}€</b> </p>
-		
 			{% for product in produits %}
 						<table><tr><td></td><td></td><td></td><td></td></tr>
 							<tr>

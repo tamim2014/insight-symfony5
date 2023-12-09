@@ -7,15 +7,13 @@ use App\Form\Type\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\Routing\Annotation\Route;
+
 //use Services\ProductBundle\Entity\Product; 
 //use Services\ProductBundle\DependencyInjection\Configuration;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 
 class ProductController extends AbstractController
 { 
@@ -25,7 +23,6 @@ class ProductController extends AbstractController
     public function accueil(){
         return $this->render('product/accueil.html.twig');
     }
-
 
     // On ajoute le produit(par un formulaire)  et on affiche la liste des produits dans la même page
    
@@ -38,7 +35,7 @@ class ProductController extends AbstractController
         $product = new Product();
         // Si tu veux(initialiser les champs)
         $product->setName('');
-        $product->setPrice(0);
+        $product->setPrice(0); // placer un placeholder au lieu de Zero
         $product->setDescription('');
         // createForm() remplace  createFormBuilder() 
         $form = $this->createForm(ProductType::class, $product);
@@ -47,10 +44,8 @@ class ProductController extends AbstractController
             $product = $form->getData();
             $entityManager->persist($product);
             $entityManager->flush(); // the INSERT query
-            // Redirection (suite au clic sur le bouton save)
-            //return new Response('Tâche prévue: ' . $task->getTask() .'|Tâche numéro: '.$task->getId() );
         }
-        return $this->renderForm('product/toutdansUnePage.html.twig', [
+        return $this->renderForm('product/nouveauProduit.html.twig', [
             'form' => $form,
             'produit' => $product,
             'produits' => $productRepository->findBy([])

@@ -14,4 +14,8 @@ th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+/* aligner les colonnes */
+td {width:8em;}
+tr>td:first-child {width:1em;  font-family:serif;}
+
 
