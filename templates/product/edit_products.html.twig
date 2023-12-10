@@ -8,13 +8,14 @@
 	</style>
 
 	<div class="example-wrapper">
+	     {{ form(form) }}
 		<p>Vous avez modifié  le <b>{{ product.id }}</b>ème produit:  Maintenant, il y a <b>{{ product.name }}</b> </p><hr>
 		<p>
 			{% for product in produits %}
 			<table>
-				<tr><td></td><td></td></tr>
-				<tr><td>{{ product.id}}</td><td>{{product.name }}</td></tr>
-				<tr><td></td><td></td></tr>
+				<tr><td></td><td></td><td></td><td></td></tr>
+				<tr><td>{{ product.id}}</td><td>{{product.name }}<td>{{ product.price}}€</td><td>{{product.description }}</td></tr>
+				<tr><td></td><td></td><td></td><td></td></tr>
 			</table>
 			{% endfor %}
 		</p>

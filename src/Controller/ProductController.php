@@ -52,63 +52,30 @@ class ProductController extends AbstractController
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
     /**
      * @Route("/affichetous", name="affichetous")
      */
     public function afficheTousLesProduits(ProductRepository $productRepository){
+       
         return $this->render('product/affichetous.html.twig', [
-            'produits' => $productRepository->findBy([])
+            // 'produits' => $products    (test de tri)
+             'produits' => $productRepository->findBy([])
         ]);
-
     }
    
-    /**
-     * @Route("/product/edit2/{id}", name="product_show")
-     */
-    public function show(EntityManagerInterface $entityManager, int $id): Response
-    {
-        $product = $entityManager->getRepository(Product::class)->find($id);
-
-        if (!$product) {  throw $this->createNotFoundException('No product found for id ' . $id);  }
-        return $this->render('product/show_products.html.twig', ['product' => $product ]);
-    }
+ 
  
     /**
      * @Route("/product/edit/{id}", name="product_edit")
      */
-    public function update(EntityManagerInterface $entityManager, int $id, ProductRepository $productRepository): Response
+    public function update(EntityManagerInterface $entityManager, int $id, ProductRepository $productRepository, Request $request): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);
         if (!$product) {
             throw $this->createNotFoundException( 'No product found for id ' . $id);
         }
-        $product->setName('un clou');
-        $entityManager->flush();
-
-        return $this->render('product/edit_products.html.twig', [
-            'id' => $product->getId(),
-            'product' => $product, 
-            'produits' => $productRepository->findBy([])
-        ]);
-    }
-    /**
-     * @Route("/editinterfaceP", name="edit_interfaceP")
-     */
-    //public function editinterface( ProductRepository $productRepository){ // cette signature est suiffisant pour la table sans le formulaire
-    public function editinterface(Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository){
-        //1. Le formulaire de mise à jour
-        //1.1 Relier le formulaire à l'entité correspondante
-        $product = new Product(); // c faux i fo recuperer, pas instancier, mais pour recuperer il faut un service et je l'ai pas
+        // $product->setName('un clou');
+        // $entityManager->flush();
         $product->setName('PC');
         $product->setPrice(3000);
         $product->setDescription('multi-processeurs');
@@ -122,14 +89,17 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush(); // the INSERT query
         }
-        //2. La liste des produits
-        // $product = $entityManager->getRepository(Product::class)->find($id);
-        //return $this->render('product/edit_interface.html.twig', [
-        return $this->render('product/edit_interface.html.twig', [
-           // 'form' => $form ,
+
+
+        // !!!!!!!!!! Attention! twig ne voit pas le formulaire si !!!!!!!!
+        // !!!!!!!!!! si tu n'utilise pas renderForm()             !!!!!!!
+        //return $this->render('product/edit_products.html.twig', [
+        return $this->renderForm('product/edit_products.html.twig', [
+            'form' => $form,
+            'id' => $product->getId(),
+            'product' => $product, 
             'produits' => $productRepository->findBy([])
         ]);
     }
-
 
 }
