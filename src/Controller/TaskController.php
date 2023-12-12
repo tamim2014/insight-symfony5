@@ -3,15 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Form\Type\TaskType;
+use App\Form\Type\TaskType;//DateType, TextType, SubmitType ...
 use App\Repository\TaskRepository;
-/*  
-l 'appel du formulaire ci-dessus(TaskType)dispense les 3 importat° suivantes:
-
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-*/
 
 use Doctrine\ORM\EntityManagerInterface; //pour la persistance 
 use Symfony\Component\HttpFoundation\Request;
@@ -67,6 +60,32 @@ class TaskController extends AbstractController
             $entityManager->flush(); 
         }
         return $this->renderForm('task/edit_task.html.twig', [
+            'form' => $form,
+            'mission' => $task,
+            'taches' => $taskRepository->findBy([])
+        ]);
+    }
+    /**
+     * @Route("/t/remove/{id}", name="remove_task")
+     */
+    public function removeTask(Request $request, EntityManagerInterface $entityManager, int $id, TaskRepository $taskRepository): Response
+    {
+        $task = $entityManager->getRepository(Task::class)->find($id);
+        if (!$task) {
+            throw $this->createNotFoundException('No task found for id ' . $id);
+        }
+        if (!$task->getId()) { // pour pas modif la date
+            $task->setDueDate(new \DateTime('tomorrow'));
+        }
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            //$entityManager->persist($task);
+            $entityManager->remove($task);
+            $entityManager->flush();
+        }
+        return $this->renderForm('task/remove_task.html.twig', [
             'form' => $form,
             'mission' => $task,
             'taches' => $taskRepository->findBy([])
