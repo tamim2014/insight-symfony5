@@ -39,7 +39,7 @@ class TaskController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush(); // the INSERT query
         }
-        return $this->renderForm('task/nouvelleTache.html.twig', [   
+        return $this->renderForm('task/new_task.html.twig', [   
             'form' => $form ,
             'tache' => $task,
             'taches' => $taskRepository->findBy([])
@@ -48,41 +48,28 @@ class TaskController extends AbstractController
 
 
     /**
-     * @Route("/task_edit/{id}", name="task_edit")
+     * @Route("/t/edit/{id}", name="edit_task")
      */
     public function updateTask(Request $request, EntityManagerInterface $entityManager, int $id, TaskRepository $taskRepository): Response
     {
         $task = $entityManager->getRepository(Task::class)->find($id);
-        //$task = $entityManager->getRepository(Task::class)->getId(); // !!! c'est là q ça s'passe !!!
         if (!$task) {
             throw $this->createNotFoundException('No task found for id ' . $id);
         }
-        $task->setTask('container symfony');
-        $task->setDueDate(new \DateTime('tomorrow')); 
+        if (!$task->getId()) {// pour pas modif la date
+            $task->setDueDate(new \DateTime('tomorrow')); 
+        }
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
             $entityManager->persist($task);
-            $entityManager->flush(); // the INSERT query
-            // Redirection (suite au clic sur le bouton save)
-            //return new Response('Tâche prévue: ' . $task->getTask() .'|Tâche numéro: '.$task->getId() );
-            return $this->redirectToRoute('task_updated');
+            $entityManager->flush(); 
         }
-        return $this->renderForm('task/task_update.html.twig', [
-
-            'form' => $form
-        ]);
-    }
-    /**
-     *@Route("/task_updated", name="task_updated")
-     */
-    public function confirmUpdateTask(TaskRepository $taskRepository): Response
-    {
-        return $this->render('task/confirmUpdateTask.html.twig', [
-            // 'taches' => $taskRepository->findBy([], ['taskOrder' => 'asc'])
-            'taches' => $taskRepository->findBy([]),
-
+        return $this->renderForm('task/edit_task.html.twig', [
+            'form' => $form,
+            'mission' => $task,
+            'taches' => $taskRepository->findBy([])
         ]);
     }
 
@@ -90,7 +77,7 @@ class TaskController extends AbstractController
      * @Route("/toustaches", name="show_all_task")
      */
     public function affichetouslestaches(TaskRepository $taskRepository){
-        return $this->render('task/affichetousT.html.twig', [
+        return $this->render('task/show_tasks.html.twig', [
             'taches' => $taskRepository->findBy([])
         ]);
 

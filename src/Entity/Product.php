@@ -32,6 +32,8 @@ class Product
      */
     private $description;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +43,11 @@ class Product
     {
         return $this->name;
     }
+
+
+
+
+
 
     public function setName(string $name): self
     {
@@ -69,6 +76,16 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    // ecq il va accepter un setter de id?
+    // possible mais dans ce cas c toi mm qui va gerer les num product
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
         return $this;
     }

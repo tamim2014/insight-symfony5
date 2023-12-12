@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+// blem pour poser un placeholder sur Entity field(pourtant ça marche pour les text field!)
 //use Services\ProductBundle\Entity\Product; 
 //use Services\ProductBundle\DependencyInjection\Configuration;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     // On ajoute le produit(par un formulaire)  et on affiche la liste des produits dans la même page
    
     /**
-     * @Route("/product", name="create_product")
+     * @Route("/product", name="new_product")
      */
     public function nouveauProduit(EntityManagerInterface $entityManager, Request $request, ProductRepository $productRepository): Response
     {
@@ -45,7 +45,7 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush(); // the INSERT query
         }
-        return $this->renderForm('product/nouveauProduit.html.twig', [
+        return $this->renderForm('product/new_product.html.twig', [
             'form' => $form,
             'produit' => $product,
             'produits' => $productRepository->findBy([])
@@ -53,53 +53,56 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/affichetous", name="affichetous")
+     * @Route("/show_products", name="show_products")
      */
     public function afficheTousLesProduits(ProductRepository $productRepository){
        
-        return $this->render('product/affichetous.html.twig', [
+        return $this->render('product/show_products.html.twig', [
             // 'produits' => $products    (test de tri)
              'produits' => $productRepository->findBy([])
         ]);
     }
-   
- 
- 
+
     /**
-     * @Route("/product/edit/{id}", name="product_edit")
+     * @Route("/p/edit/{id}", name="p_edit")
      */
-    public function update(EntityManagerInterface $entityManager, int $id, ProductRepository $productRepository, Request $request): Response
-    {
-        $product = $entityManager->getRepository(Product::class)->find($id);
-        if (!$product) {
-            throw $this->createNotFoundException( 'No product found for id ' . $id);
-        }
-        // $product->setName('un clou');
-        // $entityManager->flush();
-        $product->setName('PC');
-        $product->setPrice(3000);
-        $product->setDescription('multi-processeurs');
-        // createForm() remplace  createFormBuilder() 
+    public function edit(Request $request, EntityManagerInterface $em,  ProductRepository $productRepository, Product $product, int $id)
+   {
+        $product = $em->getRepository(Product::class)->find($id);
         $form = $this->createForm(ProductType::class, $product);
-        //1.2 Requette de saisie (accès en ecriture à la base)
         $form->handleRequest($request);
-        //1.3 Enregistrement
+
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
-            $entityManager->persist($product);
-            $entityManager->flush(); // the INSERT query
+            $em->persist($product); //$em->remove($product);
+            $em->flush();
         }
-
-
-        // !!!!!!!!!! Attention! twig ne voit pas le formulaire si !!!!!!!!
-        // !!!!!!!!!! si tu n'utilise pas renderForm()             !!!!!!!
-        //return $this->render('product/edit_products.html.twig', [
         return $this->renderForm('product/edit_products.html.twig', [
             'form' => $form,
             'id' => $product->getId(),
-            'product' => $product, 
+            'product' => $product,
             'produits' => $productRepository->findBy([])
         ]);
     }
+    /**
+     * @Route("/p/remove/{id}", name="p_remove")
+     */
+    public function remove(Request $request, EntityManagerInterface $em,  ProductRepository $productRepository, Product $product, int $id)
+    {
+        $product = $em->getRepository(Product::class)->find($id);
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+            $em->remove($product); //$em->persist($product);
+            $em->flush();
+        }
+        return $this->renderForm('product/remove_products.html.twig', [
+            'form' => $form,
+            'id' => $product->getId(),
+            'product' => $product,
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
 }

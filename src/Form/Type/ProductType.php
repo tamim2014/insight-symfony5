@@ -3,6 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Product;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,7 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+          
             ->add('name', TextType::class, [ 'attr' => ['placeholder' => 'Nom du produit']])
             ->add('price')
             //->add('description', TextType::class, ['label' => 'State']) // OK pour changer de label
