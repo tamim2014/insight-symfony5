@@ -1,93 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" /> 
-        {# <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}" /> #}
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+		{# <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}" /> #}
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+			{% block stylesheets %}
+		{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <style>
-          li.dropdown:hover  div.dropdown-menu{display:block;}
-        </style>
+			{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
+	{% endblock %}
+	</head>
+		<body>
+			<style>
+li.dropdown:hover div.dropdown-menu {
+	display: block;
+}
+		</style>
 
-        <!-- navbar de chez bootswatch -->
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand active " href="{{path('accueil')}}">&#127968;</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            {# <a class="nav-link" href="">Bases Produit </a> #}
-                        </li>
-                        <!-- modele à iterer en cas d'autre item 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
-                            <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="#"><b>Accès en lecture</b> </a>
-                                <a class="dropdown-item" href="{{path('show_products')}}">&emsp;Par produit </a>
-                                <a class="dropdown-item" href="#">&emsp;Par catégorie </a>
-                                <a class="dropdown-item" href="#"><b>Accès en écriture</b></a>
-                                {# <a class="dropdown-item" href="{{path('app_task')}}">&emsp;Add task </a> #}
-                                {# <a class="dropdown-item" href="{{path('product_edit')}}">Edit task </a> #}
-                                {# <a class="dropdown-item" href="#">&emsp;Edit task </a> #}
-                                {# <div class="dropdown-divider"></div> #}
-                                {# <a class="dropdown-item" href="#">&emsp;Remove task</a> #}
-                                <a class="dropdown-item" href="{{path('new_product')}}">&emsp;Add Product </a>
-                                {# <a class="dropdown-item" href="{{path('product_edit')}}">Edit task </a> #}
-                                 <!-- i fo mettre un formulaire de mise à jour au dessus de la table dans l'interface -->
-                                <a class="dropdown-item" href="/p/edit/{i}">&emsp;Edit product </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/p/remove/{i}">&emsp;Remove product</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tasks</a>
-                            <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="#"><b>Accès en lecture</b> </a>
-                                <a class="dropdown-item" href="{{path('show_all_task')}}">&emsp;Par tâche </a>
-                                <a class="dropdown-item" href="#">&emsp;Par catégorie </a>
-                                <a class="dropdown-item" href="#"><b>Accès en écriture</b></a>
-                                <a class="dropdown-item" href="{{path('add_task')}}">&emsp;Add task </a>
-                                
-                                {# <a class="dropdown-item" href="{{path('task_edit')}}">&emsp;Edit task </a> #}
-                                <!-- i fo construire une interface comme dans produit -->
-                                <a class="dropdown-item" href="#">&emsp;Edit task </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">&emsp;Remove task</a>
-                                {# <a class="dropdown-item" href="{{path('create_product')}}">&emsp;Add Product </a> #}
-                                {# <a class="dropdown-item" href="{{path('edit_interface')}}">&emsp;Edit product </a> #}
-                                {# <div class="dropdown-divider"></div> #}
-                                {# <a class="dropdown-item" href="#">&emsp;Remove product</a> #}
-                            </div>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{path('workflow')}}">Work flow</a>
-                        </li>
-                    </ul>
+		<!-- navbar de chez bootswatch -->
+			<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark"> <div class="container-fluid">
+				<a class="navbar-brand active " href="{{path('accueil')}}">&#127968;</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav me-auto">
+						<li
+							class="nav-item">{# <a class="nav-link" href="">Bases Produit </a> #}
+						</li>
+						<!-- modele à iterer en cas d'autre item 
+						                        <li class="nav-item">
+						                            <a class="nav-link" href="#">Features</a>
+						                        </li>
+						                        -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">
+									<b>Accès en lecture</b>
+								</a>
+								<a class="dropdown-item" href="{{path('show_products')}}">&emsp;Par produit
+								</a>
+								<a class="dropdown-item" href="{{path('show_categorie')}}">&emsp;Par catégorie
+								</a>
+								<a class="dropdown-item" href="#">
+									<b>Accès en écriture</b>
+								</a>
+								{# <a class="dropdown-item" href="{{path('app_task')}}">&emsp;Add task </a> #}
+								{# <a class="dropdown-item" href="{{path('product_edit')}}">Edit task </a> #}
+								{# <a class="dropdown-item" href="#">&emsp;Edit task </a> #}
+								{# <div class="dropdown-divider"></div> #}
+								{# <a class="dropdown-item" href="#">&emsp;Remove task</a> #}<a class="dropdown-item" href="{{path('new_product')}}"> &emsp;Add Product
+								</a>
+								{# <a class="dropdown-item" href="{{path('product_edit')}}">Edit task </a> #}
+								<!-- i fo mettre un formulaire de mise à jour au dessus de la table dans l'interface -->
+								<a class="dropdown-item" href="/p/edit/{i}">&emsp;Edit product
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/p/remove/{i}">&emsp;Remove product</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tasks</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">
+									<b>Accès en lecture</b>
+								</a>
+								<a class="dropdown-item" href="{{path('show_all_task')}}">&emsp;Par tâche
+								</a>
+								<a class="dropdown-item" href="#">&emsp;Par catégorie
+								</a>
+								<a class="dropdown-item" href="#">
+									<b>Accès en écriture</b>
+								</a>
+								<a class="dropdown-item" href="{{path('add_task')}}">&emsp;Add task
+								</a>
 
-                </div>
-            </div>
-        </nav>
+								{# <a class="dropdown-item" href="{{path('task_edit')}}">&emsp;Edit task </a> #}
+								<!-- i fo construire une interface comme dans produit -->
+								<a class="dropdown-item" href="#">&emsp;Edit task
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">&emsp;Remove task</a>
+								{# <a class="dropdown-item" href="{{path('create_product')}}">&emsp;Add Product </a> #}
+							{# <a class="dropdown-item" href="{{path('edit_interface')}}">&emsp;Edit product </a> #}
+								{# <div class="dropdown-divider"></div> #}
+								{# <a class="dropdown-item" href="#">&emsp;Remove product</a> #}
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('workflow')}}">Work flow</a>
+						</li>
+					</ul>
 
-        <div class="container">
-           {% block body %}{% endblock %}
-        </div>
-    </body>
-</html>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container"> {% block body %}{% endblock %}
+			</div>
+		</body>
+	</html>

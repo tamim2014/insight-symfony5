@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\Type\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -16,16 +17,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
-{ 
+{
     /**
      * @Route("/", name="accueil")
      */
-    public function accueil(){
+    public function accueil()
+    {
         return $this->render('product/accueil.html.twig');
     }
 
     // On ajoute le produit(par un formulaire)  et on affiche la liste des produits dans la même page
-   
+
     /**
      * @Route("/product", name="new_product")
      */
@@ -55,11 +57,23 @@ class ProductController extends AbstractController
     /**
      * @Route("/show_products", name="show_products")
      */
-    public function afficheTousLesProduits(ProductRepository $productRepository){
-       
+    public function afficheTousLesProduits(ProductRepository $productRepository)
+    {
+
         return $this->render('product/show_products.html.twig', [
             // 'produits' => $products    (test de tri)
-             'produits' => $productRepository->findBy([])
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
+    /**
+     * @Route("/show_categorie", name="show_categorie")
+     */
+    public function afficheLesCategorie(CategorieRepository $categorieRepository)
+    {
+
+        return $this->render('product/show_categories.html.twig', [
+            // 'produits' => $products    (test de tri)
+            'categories' => $categorieRepository->findBy([])
         ]);
     }
 
@@ -67,7 +81,7 @@ class ProductController extends AbstractController
      * @Route("/p/edit/{id}", name="p_edit")
      */
     public function edit(Request $request, EntityManagerInterface $em,  ProductRepository $productRepository, Product $product, int $id)
-   {
+    {
         $product = $em->getRepository(Product::class)->find($id);
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);

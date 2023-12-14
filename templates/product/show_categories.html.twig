@@ -1,0 +1,51 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		td a {
+			text-decoration: none;
+		}
+	</style>
+
+	<div
+		class="example-wrapper">
+		{# <p>Vous avez ajouté  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
+		<p>
+			{% for cat in categories %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>{{ cat.id }}</td>
+						<td>{{ cat.titre }}</td>
+						<td>
+							<a target="_blanck" href="#">Lire la suite</a>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		</p>
+	</div>
+	<small style="bottom:0; color:gray">
+		<a href="https://symfony-web.com/formation-express/affichons-une-liste-des-produits-d-une-requete-sql/1#Cr%C3%A9ation%20de%20La%20Table%20Des%20Cat%C3%A9gories" target="_blanck">formation-express</a>
+	</small>
+	|
+	<small style="bottom:0; color:gray">
+		<a href="https://symfony.com/legacy/doc/jobeet/1_4/fr/07?orm=Doctrine" target="_blanck">SymfonyHub</a>
+	</small>
+{% endblock %}
