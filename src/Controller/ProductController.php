@@ -3,17 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Categorie;
+use App\Form\CategorieType;
 use App\Form\Type\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\CategorieRepository;
-use Doctrine\ORM\EntityManagerInterface;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 // blem pour poser un placeholder sur Entity field(pourtant ça marche pour les text field!)
 //use Services\ProductBundle\Entity\Product; 
 //use Services\ProductBundle\DependencyInjection\Configuration;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
@@ -65,17 +67,9 @@ class ProductController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
-    /**
-     * @Route("/show_categorie", name="show_categorie")
-     */
-    public function afficheLesCategorie(CategorieRepository $categorieRepository)
-    {
 
-        return $this->render('product/show_categories.html.twig', [
-            // 'produits' => $products    (test de tri)
-            'categories' => $categorieRepository->findBy([])
-        ]);
-    }
+
+
 
     /**
      * @Route("/p/edit/{id}", name="p_edit")
@@ -98,6 +92,7 @@ class ProductController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
+
     /**
      * @Route("/p/remove/{id}", name="p_remove")
      */

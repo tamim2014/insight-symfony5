@@ -1,0 +1,53 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+	</style>
+
+	<div class="example-wrapper">
+
+		{{ form(form) }}
+			<p>Vous avez modifié  le
+				<b>{{ categorie.id }}</b>ème categorie:
+				<b>{{ categorie.titre }}</b>
+
+			</p>
+			<p>
+				{% for cat in categories %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ cat.id}}</td>
+							<td>{{cat.titre }}</td>
+							<td>
+								<a target="_blanck" href="#">Lire la suite</a>
+							</td>
+
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endfor %}
+			</p>
+			<small>
+				<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
+				</i>
+			</small>
+		</div>
+
+
+	{% endblock %}
