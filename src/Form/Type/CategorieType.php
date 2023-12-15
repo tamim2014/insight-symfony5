@@ -14,8 +14,8 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre', TextType::class, ['attr' => ['placeholder' => 'Nouvelle categorie']])
-            ->add('Save', SubmitType::class);
+            ->add('titre');
+        //->add('Save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -41,6 +41,7 @@ class ProductController extends AbstractController
         $product->setName('');
         $product->setPrice(0); // placer un placeholder au lieu de Zero
         $product->setDescription('');
+        $product->getCategorie();
         // createForm() remplace  createFormBuilder() 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
