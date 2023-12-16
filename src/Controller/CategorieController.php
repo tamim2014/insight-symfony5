@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
-use App\Form\CategorieType;
+use App\Form\Type\CategorieType;
+use App\Repository\ProductRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +34,13 @@ class CategorieController extends AbstractController
             'categories' => $categorieRepository->findBy([])
         ]);
     }
+
+
+
+
+
+
+
     /**
      * @Route("/c/edit/{id}", name="c_edit")
      */
@@ -52,6 +60,44 @@ class CategorieController extends AbstractController
             'id' => $cat->getId(),
             'categorie' => $cat,
             'categories' => $catRepository->findBy([])
+        ]);
+    }
+
+    /**
+     * @Route("/categorie1", name="cat1")
+     */
+    public function afficheCategorie1(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_categorie1.html.twig', [
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
+
+    /**
+     * @Route("/categorie2", name="cat2")
+     */
+    public function afficheCategorie2(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_categorie2.html.twig', [
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
+    /**
+     * @Route("/categorie3", name="cat3")
+     */
+    public function afficheCategorie3(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_categorie3.html.twig', [
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
+    /**
+     * @Route("/categorie4", name="cat4")
+     */
+    public function afficheCategorie4(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_categorie4.html.twig', [
+            'produits' => $productRepository->findBy([])
         ]);
     }
 }

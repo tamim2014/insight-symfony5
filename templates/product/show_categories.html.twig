@@ -29,7 +29,18 @@
 						<td>{{ cat.id }}</td>
 						<td>{{ cat.titre }}</td>
 						<td>
-							<a target="_blanck" href="#">Lire la suite</a>
+							{% if cat.id == 1 %}
+								<a target="_blanck" href="{{path('cat1')}}">Lire la suite</a>
+							{% endif %}
+							{% if cat.id == 2 %}
+								<a target="_blanck" href="{{path('cat2')}}">Lire la suite</a>
+							{% endif %}
+							{% if cat.id == 3 %}
+								<a target="_blanck" href="{{path('cat3')}}">Lire la suite</a>
+							{% endif %}
+							{% if cat.id == 4 %}
+								<a target="_blanck" href="{{path('cat4')}}">Lire la suite</a>
+							{% endif %}
 						</td>
 					</tr>
 					<tr>
