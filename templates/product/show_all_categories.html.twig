@@ -1,0 +1,143 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+
+		td {
+			width: 7em;
+		}
+		h4 {
+			text-align: left;
+		}
+	</style>
+
+	<div
+		class="example-wrapper">
+		{# <p>Vous avez ajouté  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
+		<p>
+			<h4>Categorie 1</h4>
+			{% for product in produits %}
+				{% if product.categorie.id == 1 %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ product.id }}</td>
+							<td>{{ product.name }}</td>
+							<td>{{ product.price }}€</td>
+							<td>{{ product.description }}</td>
+							<td>Categorie{{ product.categorie.id }}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endif %}
+			{% endfor %}
+			<h4>Categorie 2</h4>
+			{% for product in produits %}
+				{% if product.categorie.id == 2 %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ product.id }}</td>
+							<td>{{ product.name }}</td>
+							<td>{{ product.price }}€</td>
+							<td>{{ product.description }}</td>
+							<td>Categorie{{ product.categorie.id }}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endif %}
+			{% endfor %}
+			<h4>Categorie 3</h4>
+			{% for product in produits %}
+				{% if product.categorie.id == 3 %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ product.id }}</td>
+							<td>{{ product.name }}</td>
+							<td>{{ product.price }}€</td>
+							<td>{{ product.description }}</td>
+							<td>Categorie{{ product.categorie.id }}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endif %}
+			{% endfor %}
+			<h4>Categorie 4</h4>
+			{% for product in produits %}
+				{% if product.categorie.id == 4 %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ product.id }}</td>
+							<td>{{ product.name }}</td>
+							<td>{{ product.price }}€</td>
+							<td>{{ product.description }}</td>
+							<td>Categorie{{ product.categorie.id }}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endif %}
+			{% endfor %}
+		</p>
+	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">
+		<img src="images/top.png" id="imageToTop">
+	</button>
+	<script type="text/javascript" src="js/top.js"></script>
+{% endblock %}

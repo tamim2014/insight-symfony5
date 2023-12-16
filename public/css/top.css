@@ -1,0 +1,63 @@
+
+
+#myBtn {
+  display: none;  
+  position: fixed;
+  right: 1%;
+  bottom: 6.5%;
+  
+  z-index: 99;
+  
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  padding: 9px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+
+   background-color: #74AFAD;
+}
+
+/* juste pour le fun: On met l'feu sur le bouton to top !!!!!!!  */
+
+@-webkit-keyframes ombre {
+  0% {
+    box-shadow: 0 0 15px red;
+   
+  }
+  100% {
+    box-shadow: 0 0 15px yellow;
+    border:2px solid yellow; padding:2px;
+  }
+}
+@-moz-keyframes ombre {
+  0% {
+    box-shadow: 0 0 15px gold;
+  
+  }
+  100% {
+    box-shadow: 0 0 15px yellow;
+  }
+}
+@keyframes ombre {
+  0% {
+    box-shadow: 0 0 15px red;  
+  }
+  100% {
+    box-shadow: 0 0 15px yellow;/* tester  #ff1 et gold*/
+
+  }
+}
+
+#imageToTop{
+  border-radius: 4px;
+
+  /* Animation (mise à feu) */
+  -webkit-animation: ombre ease-in infinite alternate 500ms;
+  -moz-animation: ombre ease-in infinite alternate 500ms;
+  animation: ombre ease-in infinite alternate 500ms;
+}

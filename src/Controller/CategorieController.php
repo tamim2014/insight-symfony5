@@ -100,4 +100,13 @@ class CategorieController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
+    /**
+     * @Route("/toutes_categories", name="cat1234")
+     */
+    public function afficheToutesCategorieS(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_all_categories.html.twig', [
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
 }
