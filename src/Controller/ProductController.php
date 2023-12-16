@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Form\Type\ProductType;
+
 use App\Repository\ProductRepository;
 use App\Repository\CategorieRepository;
 
@@ -69,9 +70,6 @@ class ProductController extends AbstractController
         ]);
     }
 
-
-
-
     /**
      * @Route("/p/edit/{id}", name="p_edit")
      */
@@ -113,6 +111,19 @@ class ProductController extends AbstractController
             'id' => $product->getId(),
             'product' => $product,
             'produits' => $productRepository->findBy([])
+        ]);
+    }
+    // transferer( avec précaution) vers  CategorieController
+    /**
+     * @Route("/categorie1", name="cat1")
+     */
+    public function afficheCategorie1(ProductRepository $productRepository)
+    {
+
+        return $this->render('product/show_categorie1.html.twig', [
+
+            'produits' => $productRepository->findBy([])
+            
         ]);
     }
 }
