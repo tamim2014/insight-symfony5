@@ -1,0 +1,61 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		/* aligner les colonnes */
+		td {
+			width: 5em;
+		}
+		tr>td:first-child {
+			width: 1em;
+			font-family: serif;
+		}
+		td {
+			min-width: 7.5em;
+
+		}
+	</style>
+
+	<div
+		class="example-wrapper">
+		{# <p>Vous avez ajouté  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
+		<p>
+
+			{% for product in produits %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>{{ product.id }}</td>
+						<td>{{ product.name }}</td>
+						<td>{{ product.price }}€</td>
+						<td>{{ product.description }}</td>
+						<td><input type="checkbox" id="edit" name="edit"></td>
+						<td><input type="checkbox" id="remove" name="remove"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		</p>
+	</div>
+{% endblock %}

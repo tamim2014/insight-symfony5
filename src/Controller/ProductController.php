@@ -69,6 +69,15 @@ class ProductController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
+    /**
+     * @Route("/show_edit_product", name="show_edit_product")
+     */
+    public function modifierOuSupprimerUnProduit(ProductRepository $productRepository)
+    {
+        return $this->render('product/show_edit_product.html.twig', [
+            'produits' => $productRepository->findBy([])
+        ]);
+    }
 
     /**
      * @Route("/p/edit/{id}", name="p_edit")
@@ -111,19 +120,6 @@ class ProductController extends AbstractController
             'id' => $product->getId(),
             'product' => $product,
             'produits' => $productRepository->findBy([])
-        ]);
-    }
-    // transferer( avec précaution) vers  CategorieController
-    /**
-     * @Route("/categorie1", name="cat1")
-     */
-    public function afficheCategorie1(ProductRepository $productRepository)
-    {
-
-        return $this->render('product/show_categorie1.html.twig', [
-
-            'produits' => $productRepository->findBy([])
-            
         ]);
     }
 }
