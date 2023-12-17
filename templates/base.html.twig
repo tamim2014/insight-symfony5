@@ -38,10 +38,10 @@
 							class="nav-item">{# <a class="nav-link" href="">Bases Produit </a> #}
 						</li>
 						<!-- modele à iterer en cas d'autre item 
-																																																																		                        <li class="nav-item">
-																																																																		                            <a class="nav-link" href="#">Features</a>
-																																																																		                        </li>
-																																																																		                        -->
+																																																																																										                        <li class="nav-item">
+																																																																																										                            <a class="nav-link" href="#">Features</a>
+																																																																																										                        </li>
+																																																																																										                        -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
 							<div class="dropdown-menu">
@@ -78,9 +78,7 @@
 								<a class="dropdown-item" href="#">
 									<b>Accès en lecture</b>
 								</a>
-								<a class="dropdown-item" href="{{path('show_all_task')}}">&emsp;Par tâche
-								</a>
-								<a class="dropdown-item" href="#">&emsp;Par catégorie
+								<a class="dropdown-item" href="{{path('show_all_task')}}">&emsp;List
 								</a>
 								<a class="dropdown-item" href="#">
 									<b>Accès en écriture</b>
@@ -109,10 +107,13 @@
 			</div>
 		</nav>
 
-		<div class="container"> {% block body %}{% endblock %}
-			</div>
-			<button onclick="topFunction()" id="myBtn" title="Go to top">
-				<img src="images/top.png" id="imageToTop">
-			</button>
-		</body>
-	</html>
+		<div class="container">
+			{% block body %}
+				<button onclick="topFunction()" id="myBtn" title="Go to top">
+					<img src="images/top.jpg" id="imageToTop">
+				</button>
+				<script type="text/javascript" src="js/top.js"></script>
+			{% endblock %}
+		</div>
+	</body>
+</html>
