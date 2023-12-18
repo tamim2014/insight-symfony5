@@ -74,7 +74,7 @@ class ProductController extends AbstractController
      */
     public function modifierOuSupprimerUnProduit(ProductRepository $productRepository)
     {
-        return $this->render('product/show_edit_product.html.twig', [
+        return $this->render('product/show_edit_remove_product.html.twig', [
             'produits' => $productRepository->findBy([])
         ]);
     }

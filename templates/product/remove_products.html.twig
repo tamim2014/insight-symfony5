@@ -14,10 +14,19 @@
 	<div class="example-wrapper">
 
 		{{ form(form) }}
-			<p>Suppression du produit
-				<b>{{ product.id }}</b>:
-				<b>{{ product.name }}</b>
-			</p>
+			{% if(product.id ) %}
+				<p>
+					Confirmer la Suppression du produit
+					<b>{{ product.id }}</b>:
+					<b>{{ product.name }}</b>
+				</p>
+			{% else %}
+				<p>
+					Vous avez supprimé le produit
+					{{ product.name }}
+					!
+				</p>
+			{% endif %}
 			<p>
 				{% for product in produits %}
 					<table>

@@ -1,0 +1,41 @@
+/* aligner les colonnes */
+td {
+  width: 5em;
+}
+
+tr>td:first-child {
+  width: 1em;
+  font-family: serif;
+}
+
+td {
+  min-width: 7.5em;
+
+}
+
+/* table,
+  tr,
+  td {
+    border: none !important;
+  }
+  .ER {
+    font-style: italic;
+    color: gray;
+  } */
+.centrer {
+  text-align: center !important;
+  max-width: 3 !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+}
+
+
+.red:hover {
+  background-color: #f44336;
+}
+
+.green:hover {
+  background-color: #4CAF50;
+}

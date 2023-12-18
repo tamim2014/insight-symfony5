@@ -1,28 +1,51 @@
-
 {%  extends 'base.html.twig' %}
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
 	<style>
-         .example-wrapper {margin: 5em auto; max-width: 800px; width: 95%; font: 1.1em sans-serif; }	 
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
 	</style>
 
 	<div class="example-wrapper">
 
-	     {{ form(form) }}
-		<p>Vous avez modifié  le <b>{{ product.id }}</b>ème produit:  Maintenant, il y a <b>{{ product.name }}</b> </p>
-		<p>
-			{% for product in produits %}
-			<table>
-				<tr><td></td><td></td><td></td><td></td></tr>
-				<tr><td>{{ product.id}}</td><td>{{product.name }}<td>{{ product.price}}€</td><td>{{product.description }}</td></tr>
-				<tr><td></td><td></td><td></td><td></td></tr>
-			</table>
-			{% endfor %}
-		</p>
-		<small><i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a></i></small>
-	</div>
+		{{ form(form) }}
+			<p>Modification du Produit
+				<b>{{ product.id }}</b>:<b>{{ product.name }}</b>
+			</p>
+			<p>
+				{% for product in produits %}
+					<table>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{{ product.id}}</td>
+							<td>{{product.name }}</td>
+							<td>{{ product.price}}€</td>
+							<td>{{product.description }}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				{% endfor %}
+			</p>
+			<small>
+				<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
+				</i>
+			</small>
+		</div>
 
 
-{% endblock %}
-
+	{% endblock %}

@@ -2,46 +2,13 @@
 
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/edit_remove.css') }}"/>
 	<style>
 		.example-wrapper {
 			margin: 5em auto;
 			max-width: 800px;
 			width: 95%;
 			font: 1.1em sans-serif;
-		}
-		/* aligner les colonnes */
-		td {
-			width: 5em;
-		}
-		tr>td:first-child {
-			width: 1em;
-			font-family: serif;
-		}
-		td {
-			min-width: 7.5em;
-
-		}
-		/* table,
-			tr,
-			td {
-				border: none !important;
-			}
-			.ER {
-				font-style: italic;
-				color: gray;
-			} */
-		.centrer {
-			text-align: center !important;
-			max-width: 3 !important;
-
-			padding-left: 0 !important;
-			padding-right: 0 !important;
-
-		}
-
-		/* pourquoi ça prend pas ? */
-		.remove:hover {
-			background-color: #f44336 !important;
 		}
 	</style>
 
@@ -76,12 +43,12 @@
 						<td>{{ product.name }}</td>
 						<td>{{ product.price }}€</td>
 						<td>{{ product.description }}</td>
-						<td class="centrer">
+						<td class="centrer green">
 							<input
 							type="checkbox" class="edit" onclick="checkboxEdit();" name="edit" value="{{ product.id }}">
 						{# <span class="ER">Modifier</span> #}
 						</td>
-						<td class="centrer">
+						<td class="centrer red">
 							<input
 							type="checkbox" class="remove" onclick="checkboxRemove();" name="remove" value="{{ product.id }}">
 						{# <span class="ER">Supprimer</span> #}
