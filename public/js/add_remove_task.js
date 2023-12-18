@@ -1,0 +1,55 @@
+function get_task() {
+  var tasks = new Array;
+  var tasks_str = localStorage.getItem('diversTodo'); /* diversTodo est la variable à modifier pour distinguer le script todo_divers.js et le script todo_prieres.js  */
+  if (tasks_str !== null) {
+    tasks = JSON.parse(tasks_str);
+  }
+  return tasks;
+}
+
+function addTask() {
+  var taskdivers = document.getElementById('taskdivers').value;
+  var tasks = get_task();
+  if (taskdivers === '') {
+    alert("Vous n'avez rien écrit!");
+  } else {
+    tasks.push(taskdivers);
+    localStorage.setItem('diversTodo', JSON.stringify(tasks));
+    show();
+  }
+  document.getElementById("taskdivers").value = ""; // Rafraichissement du champs de saisie( sinon la dernière valeur entrée reste là et oblige l'utilisateur à l'effacer à la main)
+
+  return false;
+}
+
+function removeTask() {
+  var id = this.getAttribute('id');
+  var tasks = get_task();
+  tasks.splice(id, 1);
+  localStorage.setItem('diversTodo', JSON.stringify(tasks));
+
+  show();
+
+  return false;
+}
+
+function show() {
+  var tasks = get_task();
+
+  var html = '<ul>';
+  for (var i = 0; i < tasks.length; i++) {
+    html += '<li class="fait">' + tasks[i] + '<button class="remove" id="' + i + '">x</button></li>';
+  };
+  html += '</ul>';
+
+  document.getElementById('tasks').innerHTML = html;
+
+  var buttons = document.getElementsByClassName('remove');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', removeTask);
+  };
+}
+
+document.getElementById('add').addEventListener('click', addTask);
+
+show();

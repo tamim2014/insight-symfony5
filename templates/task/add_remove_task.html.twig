@@ -1,0 +1,37 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/add_remove_task.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<div id="myDIV" class="header">
+			<input type="text" id="taskdivers" placeholder="Écrire ici...">
+			<span id="add" class="addBtn">Add</span>
+		</div>
+
+		<div id="tasks"></div>
+	</div>
+	<script src="js/add_remove_task.js"></script>
+	<script>
+		// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+if (ev.target.tagName === 'LI') {
+ev.target.classList.toggle('checked');
+}
+}, false);
+	</script>
+
+{% endblock %}

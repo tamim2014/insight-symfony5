@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Form\Type\TaskType;//DateType, TextType, SubmitType ...
+use App\Form\Type\TaskType; //DateType, TextType, SubmitType ...
 use App\Repository\TaskRepository;
 
 use Doctrine\ORM\EntityManagerInterface; //pour la persistance 
@@ -17,26 +17,26 @@ class TaskController extends AbstractController
     /**
      * @Route("/task", name="add_task")
      */
-    public function nouvelleTache(Request $request, EntityManagerInterface $entityManager, TaskRepository $taskRepository): Response 
+    public function nouvelleTache(Request $request, EntityManagerInterface $entityManager, TaskRepository $taskRepository): Response
     {
         // Instancier un objet Task
         $task = new Task();
         // Si tu veux(initialiser les champs)
         $task->setTask('Write a blog post');
-        $task->setDueDate(new \DateTime('tomorrow'));// N'importe quoi! tu change la valeur et ça gueule ...
+        $task->setDueDate(new \DateTime('tomorrow')); // N'importe quoi! tu change la valeur et ça gueule ...
         // createForm() remplace  createFormBuilder() 
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $form->getData();   
+            $task = $form->getData();
             $entityManager->persist($task);
             $entityManager->flush(); // the INSERT query
         }
-        return $this->renderForm('task/new_task.html.twig', [   
-            'form' => $form ,
+        return $this->renderForm('task/new_task.html.twig', [
+            'form' => $form,
             'tache' => $task,
             'taches' => $taskRepository->findBy([])
-        ]);    
+        ]);
     }
 
 
@@ -49,15 +49,15 @@ class TaskController extends AbstractController
         if (!$task) {
             throw $this->createNotFoundException('No task found for id ' . $id);
         }
-        if (!$task->getId()) {// pour pas modif la date
-            $task->setDueDate(new \DateTime('tomorrow')); 
+        if (!$task->getId()) { // pour pas modif la date
+            $task->setDueDate(new \DateTime('tomorrow'));
         }
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
             $entityManager->persist($task);
-            $entityManager->flush(); 
+            $entityManager->flush();
         }
         return $this->renderForm('task/edit_task.html.twig', [
             'form' => $form,
@@ -95,17 +95,27 @@ class TaskController extends AbstractController
     /**
      * @Route("/toustaches", name="show_all_task")
      */
-    public function affichetouslestaches(TaskRepository $taskRepository){
+    public function affichetouslestaches(TaskRepository $taskRepository)
+    {
         return $this->render('task/show_tasks.html.twig', [
             'taches' => $taskRepository->findBy([])
         ]);
-
     }
     /**
      * @Route("/workflow", name="workflow")
      */
-    public function workflow(){
+    public function workflow()
+    {
         return $this->render('task/workflow.html.twig');
     }
- 
+
+    // Pas de mouvements vers la base, le stockage se fait en local
+
+    /**
+     * @Route("/addRemoveTask", name="addRemoveTask")
+     */
+    public function add_remove_task()
+    {
+        return $this->render('task/add_remove_task.html.twig');
+    }
 }
