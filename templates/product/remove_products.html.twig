@@ -9,21 +9,33 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
+		/* Rappel à l'utilisateur */
+		.aligneDroite {
+			float: right !important;
+		}
+
+		.message {
+			background-color: #ececea;
+			padding: 0.7em;
+			margin-bottom: 0.5em;
+		}
 	</style>
 
 	<div class="example-wrapper">
 
 		{{ form(form) }}
 			{% if(product.id ) %}
-				<p>
+				<p class="message">
 					Confirmer la Suppression du produit
-					<b>{{ product.id }}</b>:
-					<b>{{ product.name }}</b>
+					<span class="aligneDroite">
+						<b>{{ product.id }}</b>:
+						<b>{{ product.name }}</b>
+					</span>
 				</p>
 			{% else %}
-				<p>
+				<p class="message">
 					Vous avez supprimé le produit
-					{{ product.name }}
+					<b class="aligneDroite">{{ product.name }}</b>
 					!
 				</p>
 			{% endif %}

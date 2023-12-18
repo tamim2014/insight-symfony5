@@ -29,3 +29,14 @@ tr>td:first-child {
     width: 1em;
     font-family: serif;
 }
+
+/* Rappel à l'utilisateur: Comme d'hab! ça boude une journée avant de prendre ... */
+.aligneDroite {
+    float: right !important;
+}
+
+.message {
+    background-color: #ececea;
+    padding: 0.7em;
+    margin-bottom: 0.5em;
+}

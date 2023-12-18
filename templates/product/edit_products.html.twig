@@ -9,13 +9,26 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
+		/* Rappel à l'utilisateur */
+		.aligneDroite {
+			float: right !important;
+		}
+
+		.message {
+			background-color: #ececea;
+			padding: 0.7em;
+			margin-bottom: 0.5em;
+		}
 	</style>
 
 	<div class="example-wrapper">
 
 		{{ form(form) }}
-			<p>Modification du Produit
-				<b>{{ product.id }}</b>:<b>{{ product.name }}</b>
+			<p class="message">
+				Modification du Produit
+				<span class="aligneDroite">
+					<b>{{ product.id }}</b>:<b>{{ product.name }}</b>
+				</span>
 			</p>
 			<p>
 				{% for product in produits %}
