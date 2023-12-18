@@ -21,6 +21,28 @@
 			min-width: 7.5em;
 
 		}
+		/* table,
+			tr,
+			td {
+				border: none !important;
+			}
+			.ER {
+				font-style: italic;
+				color: gray;
+			} */
+		.centrer {
+			text-align: center !important;
+			max-width: 3 !important;
+
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+
+		}
+
+		/* pourquoi ça prend pas ? */
+		.remove:hover {
+			background-color: #f44336 !important;
+		}
 	</style>
 
 	<div
@@ -34,8 +56,8 @@
 					<td>Produit</td>
 					<td>Prix</td>
 					<td>Description</td>
-					<td>Modifier</td>
-					<td>Supprimer</td>
+					<td class="centrer">Modifier</td>
+					<td class="centrer">Supprimer</td>
 				</tr>
 			</table>
 
@@ -54,8 +76,16 @@
 						<td>{{ product.name }}</td>
 						<td>{{ product.price }}€</td>
 						<td>{{ product.description }}</td>
-						<td><input type="checkbox" class="edit" onclick="checkboxEdit();" name="edit" value="{{ product.id }}"></td>
-						<td><input type="checkbox" class="remove" name="remove" value="{{ product.id }}"></td>
+						<td class="centrer">
+							<input
+							type="checkbox" class="edit" onclick="checkboxEdit();" name="edit" value="{{ product.id }}">
+						{# <span class="ER">Modifier</span> #}
+						</td>
+						<td class="centrer">
+							<input
+							type="checkbox" class="remove" onclick="checkboxRemove();" name="remove" value="{{ product.id }}">
+						{# <span class="ER">Supprimer</span> #}
+						</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -77,6 +107,18 @@ for (let i = 0; i < collection.length; i++) {
 if (collection[i].checked === true) {
 let n = collection[i].value;
 window.location.href = "https://localhost:8000/p/edit/" + n;
+// document.write(collection[i].value);
+}
+}
+}
+
+function checkboxRemove() {
+const collection = document.getElementsByClassName('remove');
+
+for (let i = 0; i < collection.length; i++) {
+if (collection[i].checked === true) {
+let n = collection[i].value;
+window.location.href = "https://localhost:8000/p/remove/" + n;
 // document.write(collection[i].value);
 }
 }
