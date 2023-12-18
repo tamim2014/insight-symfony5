@@ -28,6 +28,17 @@
 		{# <p>Vous avez ajouté  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
 		<p>
 
+			<table>
+				<tr class="head-table" style="font-weight:bold;">
+					<td></td>
+					<td>Produit</td>
+					<td>Prix</td>
+					<td>Description</td>
+					<td>Modifier</td>
+					<td>Supprimer</td>
+				</tr>
+			</table>
+
 			{% for product in produits %}
 				<table>
 					<tr>
@@ -43,8 +54,8 @@
 						<td>{{ product.name }}</td>
 						<td>{{ product.price }}€</td>
 						<td>{{ product.description }}</td>
-						<td><input type="checkbox" id="edit" name="edit"></td>
-						<td><input type="checkbox" id="remove" name="remove"></td>
+						<td><input type="checkbox" class="edit" onclick="checkboxEdit();" name="edit" value="{{ product.id }}"></td>
+						<td><input type="checkbox" class="remove" name="remove" value="{{ product.id }}"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -58,4 +69,17 @@
 			{% endfor %}
 		</p>
 	</div>
+	<script>
+		function checkboxEdit() {
+const collection = document.getElementsByClassName('edit');
+// let remove = document.getElementById('remove');
+for (let i = 0; i < collection.length; i++) {
+if (collection[i].checked === true) {
+let n = collection[i].value;
+window.location.href = "https://localhost:8000/p/edit/" + n;
+// document.write(collection[i].value);
+}
+}
+}
+	</script>
 {% endblock %}

@@ -14,8 +14,18 @@ th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+/* ça prend pas ! ché pas pourkoi ... */
+div.example-wrapper p table tr.head-table {
+    font-weight: bold;
+}
+
 /* aligner les colonnes */
-td {width:8em;}
-tr>td:first-child {width:1em;  font-family:serif;}
+td {
+    width: 8em;
+}
 
-
+tr>td:first-child {
+    width: 1em;
+    font-family: serif;
+}
