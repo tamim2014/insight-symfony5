@@ -18,10 +18,15 @@
 		h5:nth-child(even) {
 			background-color: #dddddd;
 		}
-		/* g placé cette classe dans table.css mais ça prend pas! */
+		/* g placé ces 2 classe dans table.css mais ça prend pas! */
+		.aligneDroite {
+			float: right;
+		}
 		.message {
 			background-color: #ececea;
 			padding: 0.7em;
+			height: auto;
+			overflow-y: auto;
 			/* spécifique à cette page */
 			margin-bottom: 0.5em;
 		}
@@ -30,9 +35,10 @@
 	<div class="example-wrapper">
 		{{ form(form) }}
 
-			<div class="message">Mise à jour faite!
+			<div class="message">
+				Mise à jour de la mission:
 
-				<span>
+				<span class="aligneDroite">
 					{{ mission.id }}:
 					<b>{{ mission.task }}</b>
 				</span>

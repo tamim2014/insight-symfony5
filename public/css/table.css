@@ -22,7 +22,8 @@ div.example-wrapper p table tr.head-table {
 
 /* aligner les colonnes */
 td {
-    width: 8em;
+    max-width: 8em;
+    overflow-x: auto;
 }
 
 tr>td:first-child {
@@ -32,11 +33,13 @@ tr>td:first-child {
 
 /* Rappel à l'utilisateur: Comme d'hab! ça boude une journée avant de prendre ... */
 .aligneDroite {
-    float: right !important;
+    float: right;
 }
 
 .message {
     background-color: #ececea;
     padding: 0.7em;
     margin-bottom: 0.5em;
+    height: auto;
+    overflow-y: auto;
 }
