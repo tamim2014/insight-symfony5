@@ -70,7 +70,7 @@ class ProductController extends AbstractController
         ]);
     }
     /**
-     * @Route("/show_edit_product", name="show_edit_product")
+     * @Route("/show_edit_remove_product", name="show_edit_remove_product")
      */
     public function modifierOuSupprimerUnProduit(ProductRepository $productRepository)
     {
@@ -78,6 +78,7 @@ class ProductController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
+
 
     /**
      * @Route("/p/edit/{id}", name="p_edit")

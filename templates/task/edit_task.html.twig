@@ -1,27 +1,52 @@
-
 {%  extends 'base.html.twig' %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 5em auto; max-width: 800px; width: 95%; font: 1.1em sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-        h4 {text-decoration:underline;} 
-        h5:nth-child(even) { background-color: #dddddd; }
-    </style>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		h4 {
+			text-decoration: underline;
+		}
+		h5:nth-child(even) {
+			background-color: #dddddd;
+		}
+		/* g placé cette classe dans table.css mais ça prend pas! */
+		.message {
+			background-color: #ececea;
+			padding: 0.7em;
+			/* spécifique à cette page */
+			margin-bottom: 0.5em;
+		}
+	</style>
 
-    <div class="example-wrapper">
-         {{ form(form) }}
+	<div class="example-wrapper">
+		{{ form(form) }}
 
-        <p>Mise à jour faite! <span style="float:right"> {{ mission.id }}: <b>{{ mission.task }}</b></span> </p>
-		{#  {{maDate|date('d/m/Y')}} converti la date en français - c ça un bon filtre ! #}
-		{% for tache in taches %}
-            <h5>
-				<span> {{ tache.id }}.....{{ tache.task }}.....{{ tache.dueDate|date('d/m/Y') }}</span>
-				<span></span>
-			</h5>
-		{% endfor %}
-    </div>
-    <small style="bottom:0; color:gray">
-       <a href="https://symfony.com/doc/5.4/forms.html#rendering-forms" target="_blanck" style="text-decoration:none">SensioLabs</a>
-    </small>
-{% endblock %}
+			<div class="message">Mise à jour faite!
+
+				<span>
+					{{ mission.id }}:
+					<b>{{ mission.task }}</b>
+				</span>
+			</div>
+			{#  {{maDate|date('d/m/Y')}} converti la date en français - c ça un bon filtre ! #}
+			{% for tache in taches %}
+				<h5>
+					<span>
+						{{ tache.id }}.....{{ tache.task }}.....{{ tache.dueDate|date('d/m/Y') }}</span>
+					<span></span>
+				</h5>
+			{% endfor %}
+		</div>
+		<small style="bottom:0; color:gray">
+			<a href="https://symfony.com/doc/5.4/forms.html#rendering-forms" target="_blanck" style="text-decoration:none">SensioLabs</a>
+		</small>
+	{% endblock %}

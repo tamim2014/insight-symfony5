@@ -118,4 +118,14 @@ class TaskController extends AbstractController
     {
         return $this->render('task/add_remove_task.html.twig');
     }
+
+    /**
+     * @Route("/show_edit_remove_task", name="show_edit_remove_task")
+     */
+    public function modifierOuSupprimerUneTache(TaskRepository $taskRepository)
+    {
+        return $this->render('task/show_edit_remove_task.html.twig', [
+            'tasks' => $taskRepository->findBy([])
+        ]);
+    }
 }
