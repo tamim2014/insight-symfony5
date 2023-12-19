@@ -38,7 +38,7 @@ body {
 /* When clicked on, add a background color and strike out text */
 #tasks ul li.checked {
   background: #888;
-  color: #fff;
+  color: #fff !important;
   text-decoration: line-through !important;
 }
 

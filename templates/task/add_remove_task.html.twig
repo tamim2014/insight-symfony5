@@ -13,6 +13,11 @@
 			background: #F5F5F5;
 			padding: 2px 6px;
 		}
+		div.example-wrapper div#tasks ul li.checked {
+			background: #888;
+			color: #fff !important;
+			text-decoration: line-through !important;
+		}
 	</style>
 
 	<div class="example-wrapper">
@@ -26,9 +31,10 @@
 	<script src="js/add_remove_task.js"></script>
 	<script>
 		// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
+// var list = document.querySelector('li');
+var list = document.getElementsByTagName('li');
 list.addEventListener('click', function (ev) {
-if (ev.target.tagName === 'LI') {
+if (ev.target.tagName === 'li') {
 ev.target.classList.toggle('checked');
 }
 }, false);

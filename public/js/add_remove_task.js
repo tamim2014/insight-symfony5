@@ -53,3 +53,21 @@ function show() {
 document.getElementById('add').addEventListener('click', addTask);
 
 show();
+
+// Add a "checked" symbol when clicking on a list item
+/*
+  ça prend pas mais c pas grav car 
+    - ni le checked
+    - ni la ligne
+  rien est persisté. i fo trouver une solution.
+  ces 2 effets i sont pas mal qd mm!
+
+ */
+/*
+var list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+*/
