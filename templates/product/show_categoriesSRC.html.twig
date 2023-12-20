@@ -42,17 +42,6 @@
 							{% if cat.id == 4 %}
 								<a target="_blanck" href="{{path('cat4')}}">Lire la suite</a>
 							{% endif %}
-
-							{# chaque nouvelle categorie implique
-														1) Une nouvelle fonction dans le controleur
-														2) Une nouvelle page dans le template
-														Ce qui impose l'intervention technique d'un service de développement
-														...... Il ne suffit pas de livrer une application ................. 
-														...... Il y a un service après vente .............................. #}
-
-							{% if (cat.id > 4) %}
-								<a target="_blanck" href="#" style="color:blue;">Lire la suite</a>
-							{% endif %}
 						</td>
 					</tr>
 					<tr>
