@@ -2,6 +2,7 @@
 
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/top.css') }}"/>
 	<style>
 		.example-wrapper {
 			margin: 5em auto;
@@ -18,56 +19,79 @@
 			background-color: #ececea;
 			padding: 0.7em;
 			margin-bottom: 0.5em;
+			margin-top: 1em;
 		}
 	</style>
 
-	<div class="example-wrapper">
+	<div
+		class="example-wrapper">
 
-		{{ form(form) }}
-			{% if(product.id ) %}
-				<p class="message">
-					Confirmer la Suppression du produit
-					<span class="aligneDroite">
-						<b>{{ product.id }}</b>:
-						<b>{{ product.name }}</b>
-					</span>
-				</p>
-			{% else %}
-				<p class="message">
-					Vous avez supprimé le produit
-					<b class="aligneDroite">{{ product.name }}</b>
-					!
-				</p>
-			{% endif %}
-			<p>
-				{% for product in produits %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ product.id}}</td>
-							<td>{{product.name }}</td>
-							<td>{{ product.price}}€</td>
-							<td>{{product.description }}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endfor %}
+		{# {{ form(form) }} #}
+		{{  form_start(form) }}
+		{{  form_row(form.name,  {'attr': {'placeholder':"Nom du produit ..."}}) }}
+		{{  form_row(form.price,  {'attr': { 'placeholder':"Prix du produit "}}) }}
+		{{  form_row(form.description,  {'attr': {'placeholder':" "}}) }}
+		{{  form_row(form.categorie,  {'attr': {'placeholder':" "}}) }}
+		{%  if removeMode %}
+			<button type="submit" class="btn btn-primary">
+				Confirmer
+			</button>
+		{%  else %}
+			<button type="submit" class="btn btn-success">
+				Produit supprimé !
+			</button>
+		{%  endif %}
+		{{  form_end(form) }}
+
+
+		{% if(product.id ) %}
+			<p class="message">
+				Confirmer la Suppression du produit
+				<span class="aligneDroite">
+					<b>{{ product.id }}</b>:
+					<b>{{ product.name }}</b>
+				</span>
 			</p>
-			<small>
-				<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
-				</i>
-			</small>
-		</div>
+		{% else %}
+			<p class="message">
+				Vous avez supprimé le produit
+				<b class="aligneDroite">{{ product.name }}</b>
+				:
+			</p>
+		{% endif %}
+		<p>
+			{% for product in produits %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>{{ product.id}}</td>
+						<td>{{product.name }}</td>
+						<td>{{ product.price}}€</td>
+						<td>{{product.description }}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		</p>
+		<small>
+			<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
+			</i>
+		</small>
+	</div>
+	{# le Go-to-top ne prend pas #}
+	<button onclick="topFunction()" id="myBtn" title="Go to top">
+		<img src="images/top.jpg" id="imageToTop">
+	</button>
+	<script type="text/javascript" src="js/top.js"></script>
 
-
-	{% endblock %}
+{% endblock %}

@@ -20,6 +20,7 @@ class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $espace = "&emsp;&emsp;";
         $builder
 
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Nom du produit']])
@@ -31,7 +32,8 @@ class ProductType extends AbstractType
                 'class' => Categorie::class,
                 'choice_label' => 'titre'
             ])
-            ->add('save', SubmitType::class);
+            // ->add('save', SubmitType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

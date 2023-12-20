@@ -54,7 +54,9 @@ class ProductController extends AbstractController
         return $this->renderForm('product/new_product.html.twig', [
             'form' => $form,
             'produit' => $product,
-            'produits' => $productRepository->findBy([])
+            'produits' => $productRepository->findBy([]),
+            'editMode' => $product->getId() !== null
+
         ]);
     }
 
@@ -98,7 +100,8 @@ class ProductController extends AbstractController
             'form' => $form,
             'id' => $product->getId(),
             'product' => $product,
-            'produits' => $productRepository->findBy([])
+            'produits' => $productRepository->findBy([]),
+            'editMode' => $product->getId() !== null
         ]);
     }
 
@@ -120,7 +123,9 @@ class ProductController extends AbstractController
             'form' => $form,
             'id' => $product->getId(),
             'product' => $product,
-            'produits' => $productRepository->findBy([])
+            'produits' => $productRepository->findBy([]),
+            'removeMode' => $product->getId() !== null
+
         ]);
     }
 }
