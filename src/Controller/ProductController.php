@@ -102,6 +102,7 @@ class ProductController extends AbstractController
             'product' => $product,
             'produits' => $productRepository->findBy([]),
             'editMode' => $product->getId() !== null
+            // 'editMode' => $product->getName()
         ]);
     }
 

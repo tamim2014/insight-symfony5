@@ -24,6 +24,34 @@ class CategorieController extends AbstractController
         ]);
     }
     /**
+     * @Route("/nouvelle_categorie", name="nouvelle_categorie")
+     */
+    public function nouveauProduit(EntityManagerInterface $entityManager, Request $request, CategorieRepository $categorieRepository): Response
+    {
+        // Instancier un objet Product
+        $categorie = new Categorie();
+        // Si tu veux(initialiser les champs)
+        $categorie->setTitre('');
+
+        // createForm() remplace  createFormBuilder() 
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categorie = $form->getData();
+            $entityManager->persist($categorie);
+            $entityManager->flush(); // the INSERT query
+        }
+        return $this->renderForm('product/new_categorie.html.twig', [
+            'form' => $form,
+            'categorie' => $categorie,
+            'categories' => $categorieRepository->findBy([]),
+            'editMode' => $categorie->getId() !== null
+
+        ]);
+    }
+
+
+    /**
      * @Route("/show_categorie", name="show_categorie")
      */
     public function afficheLesCategorie(CategorieRepository $categorieRepository)

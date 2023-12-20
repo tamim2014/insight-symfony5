@@ -1,0 +1,86 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		h4 {
+			text-decoration: underline;
+		}
+		/* Rappel à l'utilisateur */
+		.aligneDroite {
+			float: right !important;
+		}
+
+		.message {
+			background-color: #ececea;
+			padding: 0.7em;
+			margin-bottom: 1em;
+			margin-top: 1em;
+		}
+	</style>
+
+	<div
+		class="example-wrapper">
+		{# {{ form(form) }} #}
+		{{  form_start(form) }}
+		{{  form_row(form.titre,  {'attr': {'placeholder':"Nom du produit ..."}}) }}
+		{%  if editMode %}
+			<button type="submit" class="btn btn-success">
+				Categorie ajoutée
+			</button>
+		{%  else %}
+			<button type="submit" class="btn btn-primary">
+				Ajouter une nouvelle categorie
+			</button>
+		{%  endif %}
+		{{  form_end(form) }}
+
+		<!-- <p> Pour la page update: Choisir le numéro du produit à modifier</p> -->
+
+		{# {% if(produit.id) %}: affichage du resultat Seulement en cas d'opération #}
+
+			{% if(categorie.id) %}
+				<p class="message"> Vous avez ajouté  la
+				<b>
+					{{ categorie.id }}
+				</b>ème categorie:
+				<span class="aligneDroite">
+					<b>
+						{{ categorie.titre }}
+					</b>.
+
+				</span>
+			</p>
+			{% for categorie in categories %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							{{ categorie.id }}
+						</td>
+						<td>
+							{{ categorie.titre }}
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

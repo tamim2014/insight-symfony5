@@ -32,14 +32,15 @@
 		{{  form_row(form.categorie,  {'attr': {'placeholder':" "}}) }}
 		{%  if editMode %}
 			<button type="submit" class="btn btn-primary">
-				Modifier le produit
-			</button>
-
-		{%  else %}
-			<button type="submit" class="btn btn-success">
-				Produit Modifié
+				Confirmer
+				{# </button>
+							
+								{%  else %}
+								<button type="submit" class="btn btn-success">
+								Produit Modifié #}
 			</button>
 		{%  endif %}
+
 		{{  form_end(form) }}
 
 		<p class="message">
