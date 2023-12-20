@@ -15,7 +15,7 @@
 		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}<script type="text/javascript" src="js/top.js"></script>
+			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
 
@@ -97,11 +97,13 @@
 
 		<div class="container">
 			{% block body %}
-				<button onclick="topFunction()" id="myBtn" title="Go to top">
-					<img src="images/top.jpg" id="imageToTop">
-				</button>
-				<script type="text/javascript" src="js/top.js"></script>
+				{# Ce qui est placé ici n'est pas herité #}
 			{% endblock %}
 		</div>
+		{# Ce qui est placé ici est herité #}
+		<button onclick="topFunction()" id="myBtn" title="Go to top">
+			<img src="images/top.jpg" id="imageToTop">
+		</button>
+		<script type="text/javascript" src="js/top.js"></script>
 	</body>
 </html>
