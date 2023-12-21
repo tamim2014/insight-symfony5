@@ -95,6 +95,15 @@ class ProductController extends AbstractController
             $product = $form->getData();
             $em->persist($product); //$em->remove($product);
             $em->flush();
+            // $this->addFlash() is equivalent to $request->getSession()->getFlashBag()->add()
+            $this->addFlash(
+                'notice1',
+                'btn vert '
+            );
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
         }
         return $this->renderForm('product/edit_products.html.twig', [
             'form' => $form,
@@ -103,6 +112,7 @@ class ProductController extends AbstractController
             'produits' => $productRepository->findBy([]),
             'editMode' => $product->getId() !== null
             // 'editMode' => $product->getName()
+            //'notice' =>app.flashes([])
         ]);
     }
 

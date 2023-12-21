@@ -33,26 +33,20 @@
 		{%  if editMode %}
 			<button type="submit" class="btn btn-primary">
 				Confirmer
+				{# </button>
+							
+								{%  else %}
+								<button type="submit" class="btn btn-success">
+								Produit Modifié #}
 			</button>
-
-			{% for notice1 in app.flashes('notice1') %}
-				<button type="submit" class="btn btn-success">
-					Produit Modifié
-				</button>
-			{% endfor %}
 		{%  endif %}
-
 
 		{{  form_end(form) }}
 
 		<p class="message">
-			{# Modification du Produit #}
-			{# test session #}
-				{% for notice in app.flashes('notice') %}
-			{{ notice }}
-			{% endfor %}
-			{# fin test session #}
-				<span class="aligneDroite"> <b>{{ product.id }}</b>:<b>{{ product.name }}</b>
+			Modification du Produit
+			<span class="aligneDroite">
+				<b>{{ product.id }}</b>:<b>{{ product.name }}</b>
 			</span>
 		</p>
 		<p>
