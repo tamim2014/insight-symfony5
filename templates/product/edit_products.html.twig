@@ -20,6 +20,11 @@
 			margin-bottom: 0.5em;
 			margin-top: 1em;
 		}
+		.cacheBtnBleu {
+			position: absolute;
+			left: 10.3%;
+			z-index: 2;
+		}
 	</style>
 
 	<div
@@ -34,25 +39,20 @@
 			<button type="submit" class="btn btn-primary">
 				Confirmer
 			</button>
-
 			{% for notice1 in app.flashes('notice1') %}
-				<button type="submit" class="btn btn-success">
+				<button type="submit" class=" btn btn-success cacheBtnBleu">
 					Produit Modifié
 				</button>
 			{% endfor %}
 		{%  endif %}
-
-
 		{{  form_end(form) }}
 
 		<p class="message">
-			{# Modification du Produit #}
-			{# test session #}
-				{% for notice in app.flashes('notice') %}
-			{{ notice }}
+			{% for notice in app.flashes('notice') %}
+				{{ notice }}
 			{% endfor %}
-			{# fin test session #}
-				<span class="aligneDroite"> <b>{{ product.id }}</b>:<b>{{ product.name }}</b>
+			<span class="aligneDroite">
+				<b>{{ product.id }}</b>:<b>{{ product.name }}</b>
 			</span>
 		</p>
 		<p>
@@ -84,6 +84,4 @@
 			</i>
 		</small>
 	</div>
-
-
 {% endblock %}
