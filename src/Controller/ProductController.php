@@ -82,6 +82,7 @@ class ProductController extends AbstractController
     }
 
 
+
     /**
      * @Route("/p/edit/{id}", name="p_edit")
      */

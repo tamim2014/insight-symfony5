@@ -1,0 +1,60 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/edit_remove.css') }}"/>
+	<style>
+		.example-wrapper {
+			margin: 5em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<p>
+			<table>
+				<tr class="head-table" style="font-weight:bold;">
+					<td></td>
+					<td>Catégories</td>
+					<td class="centrer">Modifier</td>
+					<td class="centrer">Supprimer</td>
+				</tr>
+			</table>
+
+			{% for category in categories %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>{{ category.id }}</td>
+						<td>{{ category.titre }}</td>
+						<td class="centrer green">
+							<input
+							type="checkbox" class="edit" onclick="checkboxEdit();" name="edit" value="{{ category.id }}">
+						{# <span class="ER">Modifier</span> #}
+						</td>
+						<td class="centrer red">
+							<input
+							type="checkbox" class="remove" onclick="checkboxRemove();" name="remove" value="{{ category.id }}">
+						{# <span class="ER">Supprimer</span> #}
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		</p>
+	</div>
+
+	<script type="text/javascript" src="js/edit_remove_category.js"></script>
+{% endblock %}

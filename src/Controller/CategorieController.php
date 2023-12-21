@@ -56,18 +56,11 @@ class CategorieController extends AbstractController
      */
     public function afficheLesCategorie(CategorieRepository $categorieRepository)
     {
-
         return $this->render('product/show_categories.html.twig', [
             // 'produits' => $products    (test de tri)
             'categories' => $categorieRepository->findBy([])
         ]);
     }
-
-
-
-
-
-
 
     /**
      * @Route("/c/edit/{id}", name="c_edit")
@@ -82,14 +75,34 @@ class CategorieController extends AbstractController
             $cat = $form->getData();
             $em->persist($cat); //$em->remove($product);
             $em->flush();
+            $this->addFlash(
+                'notice1',
+                'btn vert '
+            );
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
         }
         return $this->renderForm('product/edit_categories.html.twig', [
             'form' => $form,
             'id' => $cat->getId(),
             'categorie' => $cat,
-            'categories' => $catRepository->findBy([])
+            'categories' => $catRepository->findBy([]),
+            'editMode' => $cat->getId() !== null
         ]);
     }
+
+    /**
+     * @Route("/show_edit_remove_category", name="show_edit_remove_category")
+     */
+    public function modifierOuSupprimerUneCategorie(CategorieRepository $categorieRepository)
+    {
+        return $this->render('product/show_edit_remove_category.html.twig', [
+            'categories' => $categorieRepository->findBy([])
+        ]);
+    }
+
 
     /**
      * @Route("/categorie1", name="cat1")

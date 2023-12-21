@@ -9,45 +9,77 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
+		/* Rappel à l'utilisateur */
+		.aligneDroite {
+			float: right !important;
+		}
+
+		.message {
+			background-color: #ececea;
+			padding: 0.7em;
+			margin-bottom: 0.5em;
+			margin-top: 1em;
+		}
+		.cacheBtnBleu {
+			position: absolute;
+			left: 10.3%;
+			z-index: 2;
+		}
 	</style>
 
-	<div class="example-wrapper">
+	<div
+		class="example-wrapper">
+		{# {{ form(form) }} #}
+		{{  form_start(form) }}
+		{{  form_row(form.titre,  {'attr': {'placeholder':"Nom de la catégorie ..."}}) }}
+		{%  if editMode %}
+			<button type="submit" class="btn btn-primary">
+				Confirmer
+			</button>
+			{% for notice1 in app.flashes('notice1') %}
+				<button type="submit" class=" btn btn-success cacheBtnBleu">
+					Catégorie Modifiée
+				</button>
+			{% endfor %}
+		{%  endif %}
+		{{  form_end(form) }}
+		<p class="message">
+			{% for notice in app.flashes('notice') %}
+				{{ notice }}
+			{% endfor %}
+			<span class="aligneDroite">
+				<b>{{ categorie.id }}</b>:<b>{{ categorie.titre }}</b>
+			</span>
+		</p>
+		<p>
+			{% for cat in categories %}
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>{{ cat.id}}</td>
+						<td>{{cat.titre }}</td>
+						<td>
+							<a target="_blanck" href="#">Lire la suite</a>
+						</td>
 
-		{{ form(form) }}
-			<p>Vous avez modifié  le
-				<b>{{ categorie.id }}</b>ème categorie:
-				<b>{{ categorie.titre }}</b>
-
-			</p>
-			<p>
-				{% for cat in categories %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ cat.id}}</td>
-							<td>{{cat.titre }}</td>
-							<td>
-								<a target="_blanck" href="#">Lire la suite</a>
-							</td>
-
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endfor %}
-			</p>
-			<small>
-				<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
-				</i>
-			</small>
-		</div>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			{% endfor %}
+		</p>
+		<small>
+			<i style="color:gray">Souce:<a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blanck">Sensio Labs</a>
+			</i>
+		</small>
+	</div>
 
 
-	{% endblock %}
+{% endblock %}
