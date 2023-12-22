@@ -38,7 +38,7 @@
 			</button>
 			{% for notice1 in app.flashes('notice1') %}
 				<button type="submit" class=" btn btn-success cacheBtnBleu">
-					<a href="{{path('show_categorie')}}" class="redirectInterface" style="color:inherit; text-decoration:none;">Catégorie Modifiée</a>
+					<a href="{{path('show_edit_remove_category')}}" class="redirectInterface" style="color:inherit; text-decoration:none;">Catégorie Modifiée</a>
 				</button>
 			{% endfor %}
 		{%  endif %}
