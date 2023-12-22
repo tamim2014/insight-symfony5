@@ -3,6 +3,7 @@
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('css/top.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/redirect.css') }}"/>
 	<style>
 		.example-wrapper {
 			margin: 5em auto;
@@ -10,7 +11,7 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
-		/* Rappel à l'utilisateur */
+		/* Rappel à l'utilisateur 
 		.aligneDroite {
 			float: right !important;
 		}
@@ -21,6 +22,7 @@
 			margin-bottom: 0.5em;
 			margin-top: 1em;
 		}
+		*/
 	</style>
 
 	<div
@@ -38,7 +40,7 @@
 			</button>
 		{%  else %}
 			<button type="submit" class="btn btn-success">
-				Produit supprimé !
+				<a href="{{path('show_edit_remove_product')}}" class="redirectInterface">Produit supprimé !</a>
 			</button>
 		{%  endif %}
 		{{  form_end(form) }}
