@@ -36,7 +36,7 @@
 		{{  form_row(form.titre,  {'attr': {'placeholder':"Nom du produit ..."}}) }}
 		{%  if editMode %}
 			<button type="submit" class="btn btn-success">
-				Categorie ajoutée
+				<a href="{{path('show_categorie')}}" class="redirectInterface" style="color:inherit; text-decoration:none;">Categorie ajoutée</a>
 			</button>
 		{%  else %}
 			<button type="submit" class="btn btn-primary">

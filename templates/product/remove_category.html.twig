@@ -2,6 +2,8 @@
 
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/top.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/redirect.css') }}"/>
 	<style>
 		.example-wrapper {
 			margin: 5em auto;
@@ -9,7 +11,7 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
-		/* Rappel à l'utilisateur */
+		/* Rappel à l'utilisateur 
 		.aligneDroite {
 			float: right !important;
 		}
@@ -20,55 +22,55 @@
 			margin-bottom: 0.5em;
 			margin-top: 1em;
 		}
-		.cacheBtnBleu {
-			position: absolute;
-			left: 10.3%;
-			z-index: 2;
-		}
+		*/
 	</style>
 
 	<div
 		class="example-wrapper">
+
 		{# {{ form(form) }} #}
 		{{  form_start(form) }}
-		{{  form_row(form.titre,  {'attr': {'placeholder':"Nom de la catégorie ..."}}) }}
-		{%  if editMode %}
+		{{  form_row(form.titre,  {'attr': {'placeholder':"Nom du produit ..."}}) }}
+
+		{%  if removeMode %}
 			<button type="submit" class="btn btn-primary">
 				Confirmer
 			</button>
-			{% for notice1 in app.flashes('notice1') %}
-				<button type="submit" class=" btn btn-success cacheBtnBleu">
-					<a href="{{path('show_categorie')}}" class="redirectInterface" style="color:inherit; text-decoration:none;">Catégorie Modifiée</a>
-				</button>
-			{% endfor %}
+		{%  else %}
+			<button type="submit" class="btn btn-success">
+				<a href="{{path('show_edit_remove_category')}}" class="redirectInterface">Catégorie supprimée !</a>
+			</button>
 		{%  endif %}
 		{{  form_end(form) }}
-		<p class="message">
-			{% for notice in app.flashes('notice') %}
-				{{ notice }}
-			{% endfor %}
-			<span class="aligneDroite">
-				<b>{{ categorie.id }}</b>:<b>{{ categorie.titre }}</b>
-			</span>
-		</p>
+
+
+		{% if(category.id ) %}
+			<p class="message">
+				Confirmer la Suppression de la catégorie
+				<span class="aligneDroite">
+					<b>{{ category.id }}</b>:
+					<b>{{ category.titre }}</b>
+				</span>
+			</p>
+		{% else %}
+			<p class="message">
+				Vous avez supprimé la catégorie
+				<b class="aligneDroite">{{ category.titre }}</b>
+				:
+			</p>
+		{% endif %}
 		<p>
 			{% for cat in categories %}
 				<table>
 					<tr>
 						<td></td>
 						<td></td>
-						<td></td>
 					</tr>
 					<tr>
 						<td>{{ cat.id}}</td>
 						<td>{{cat.titre }}</td>
-						<td>
-							<a target="_blanck" href="#">Lire la suite</a>
-						</td>
-
 					</tr>
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
@@ -80,6 +82,10 @@
 			</i>
 		</small>
 	</div>
-
+	{# le Go-to-top ne prend pas #}
+	<button onclick="topFunction()" id="myBtn" title="Go to top">
+		<img src="images/top.jpg" id="imageToTop">
+	</button>
+	<script type="text/javascript" src="js/top.js"></script>
 
 {% endblock %}

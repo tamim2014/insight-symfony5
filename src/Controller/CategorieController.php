@@ -150,4 +150,28 @@ class CategorieController extends AbstractController
             'produits' => $productRepository->findBy([])
         ]);
     }
+
+    /**
+     * @Route("/c/remove/{id}", name="c_remove")
+     */
+    public function remove(Request $request, EntityManagerInterface $em,  CategorieRepository $categorieRepository, Categorie $categorie, int $id)
+    {
+        $categorie = $em->getRepository(Categorie::class)->find($id);
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+            $em->remove($categorie);
+            $em->flush();
+        }
+        return $this->renderForm('product/remove_category.html.twig', [
+            'form' => $form,
+            'id' => $categorie->getId(),
+            'category' => $categorie,
+            'categories' => $categorieRepository->findBy([]),
+            'removeMode' => $categorie->getId() !== null
+
+        ]);
+    }
 }
