@@ -25,6 +25,10 @@
 			left: 10.3%;
 			z-index: 2;
 		}
+		.redirectInterface {
+			color: inherit;
+			text-decoration: none !important;
+		}
 	</style>
 
 	<div
@@ -40,8 +44,8 @@
 				Confirmer
 			</button>
 			{% for notice1 in app.flashes('notice1') %}
-				<button type="submit" class=" btn btn-success cacheBtnBleu">
-					Produit Modifié
+				<button class="btn btn-success cacheBtnBleu">
+					<a href="{{path('show_edit_remove_product')}}" class="redirectInterface">Produit Modifié</a>
 				</button>
 			{% endfor %}
 		{%  endif %}
