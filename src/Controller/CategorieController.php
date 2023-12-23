@@ -37,12 +37,6 @@ class CategorieController extends AbstractController
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-
-
-
-
-
             $categorie = $form->getData();
             $entityManager->persist($categorie);
             $entityManager->flush(); // the INSERT query

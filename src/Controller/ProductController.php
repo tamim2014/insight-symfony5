@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 //use Services\ProductBundle\Entity\Product; 
 //use Services\ProductBundle\DependencyInjection\Configuration;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
@@ -35,7 +34,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/product", name="new_product")
      */
-    public function nouveauProduit(SluggerInterface $slugger, EntityManagerInterface $entityManager, Request $request, ProductRepository $productRepository): Response
+    public function nouveauProduit(EntityManagerInterface $entityManager, Request $request, ProductRepository $productRepository): Response
     {
         // Instancier un objet Product
         $product = new Product();
@@ -48,30 +47,6 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $brochureFile = $form->get('brochure')->getData();
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $brochureFile->move(
-                        $this->getParameter('brochures_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $product->setBrochureFilename($newFilename);
-            }
-
-
-
-
-
             $product = $form->getData();
             $entityManager->persist($product);
             $entityManager->flush(); // the INSERT query
