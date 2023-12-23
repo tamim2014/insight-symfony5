@@ -2,6 +2,7 @@
 
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/table.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/touteslescategoriesOC.css') }}"/>
 	<style>
 		.example-wrapper {
 			margin: 5em auto;
@@ -9,7 +10,6 @@
 			width: 95%;
 			font: 1.1em sans-serif;
 		}
-
 		td {
 			width: 7em;
 		}
@@ -18,122 +18,164 @@
 		}
 	</style>
 
-	<div
-		class="example-wrapper">
-		{# <p>Vous avez ajouté  le <b>{{ product.id }}</b>ème produit:  Un <b>{{ product.name }}</b> </p><hr> #}
-		<p>
-			<h4>Categorie 1</h4>
-			{% for product in produits %}
-				{% if product.categorie.id == 1 %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ product.id }}</td>
-							<td>{{ product.name }}</td>
-							<td>{{ product.price }}€</td>
-							<td>{{ product.description }}</td>
-							<td>Categorie{{ product.categorie.id }}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endif %}
-			{% endfor %}
-			<h4>Categorie 2</h4>
-			{% for product in produits %}
-				{% if product.categorie.id == 2 %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ product.id }}</td>
-							<td>{{ product.name }}</td>
-							<td>{{ product.price }}€</td>
-							<td>{{ product.description }}</td>
-							<td>Categorie{{ product.categorie.id }}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endif %}
-			{% endfor %}
-			<h4>Categorie 3</h4>
-			{% for product in produits %}
-				{% if product.categorie.id == 3 %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ product.id }}</td>
-							<td>{{ product.name }}</td>
-							<td>{{ product.price }}€</td>
-							<td>{{ product.description }}</td>
-							<td>Categorie{{ product.categorie.id }}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endif %}
-			{% endfor %}
-			<h4>Categorie 4</h4>
-			{% for product in produits %}
-				{% if product.categorie.id == 4 %}
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>{{ product.id }}</td>
-							<td>{{ product.name }}</td>
-							<td>{{ product.price }}€</td>
-							<td>{{ product.description }}</td>
-							<td>Categorie{{ product.categorie.id }}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				{% endif %}
-			{% endfor %}
-		</p>
+	<div class="example-wrapper">
+		<h3>Toutes les catégories</h3>
+		<button class="accordion" onclick="myFunction(this)">
+			<b>Categorie 1</b>
+			<div class="containerBtn">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<div class="panel">
+			<p>
+				{% for product in produits %}
+					{% if product.categorie.id == 1 %}
+						<table>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.price }}€</td>
+								<td>{{ product.description }}</td>
+								<td>Categorie{{ product.categorie.id }}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>
+		<button class="accordion" onclick="myFunction(this)">
+			<b>Categorie 2</b>
+			<div class="containerBtn">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<div class="panel">
+			<p>
+				{% for product in produits %}
+					{% if product.categorie.id == 2 %}
+						<table>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.price }}€</td>
+								<td>{{ product.description }}</td>
+								<td>Categorie{{ product.categorie.id }}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>
+		<button class="accordion" onclick="myFunction(this)">
+			<b>Categorie 3</b>
+			<div class="containerBtn">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<div class="panel">
+			<p>
+				{% for product in produits %}
+					{% if product.categorie.id == 3 %}
+						<table>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.price }}€</td>
+								<td>{{ product.description }}</td>
+								<td>Categorie{{ product.categorie.id }}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>
+		<button class="accordion" onclick="myFunction(this)">
+			<b>Categorie 4</b>
+			<div class="containerBtn">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<div class="panel">
+			<p>
+				{% for product in produits %}
+					{% if product.categorie.id == 4 %}
+						<table>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.price }}€</td>
+								<td>{{ product.description }}</td>
+								<td>Categorie{{ product.categorie.id }}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>
 	</div>
+	<script type="text/javascript" src="js/touteslescategoriesOC.js"></script>
 {% endblock %}
