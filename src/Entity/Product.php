@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
@@ -37,6 +38,13 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    // Fichiers externes
+
+    /**
+     * ORM\Column(type: 'string')
+     */
+    private string $brochureFilename;
 
 
 
@@ -104,6 +112,20 @@ class Product
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    // Intégration de fichiers externe ( foto de produit, factures, ...)
+
+    public function getBrochureFilename(): string
+    {
+        return $this->brochureFilename;
+    }
+
+    public function setBrochureFilename(string $brochureFilename): self
+    {
+        $this->brochureFilename = $brochureFilename;
 
         return $this;
     }

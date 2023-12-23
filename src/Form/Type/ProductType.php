@@ -22,6 +22,19 @@ class ProductType extends AbstractType
     {
         $espace = "&emsp;&emsp;";
         $builder
+            ->add('brochure', FileType::class, [
+            'label' => 'Brochure (PDF file)',
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new File([
+                    'maxSize' => '1024k',
+                    'mimeTypes' => [
+                        'application/pdf',
+                        'application/x-pdf',
+                    ],
+                    'mimeTypesMessage' => 'Please upload a valid PDF document'
+               ])])
 
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Nom du produit']])
             ->add('price')
