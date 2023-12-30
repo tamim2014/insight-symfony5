@@ -21,14 +21,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    /**
-     * @Route("/", name="accueil")
-     */
-    public function accueil()
-    {
-        return $this->render('product/accueil.html.twig');
-    }
-
     // On ajoute le produit(par un formulaire)  et on affiche la liste des produits dans la même page
 
     /**
