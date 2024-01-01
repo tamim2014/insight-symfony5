@@ -9,21 +9,39 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    # LES UTILISATEURS( providers )
     providers:
         users_in_memory: { memory: null }
+        # AUTHENTIFICATION: On ajoute les utilisateurs enregistrés dans la BD
+        users_in_database:
+             entity:
+               class: App\Entity\User
+               property: email
+    # LES PROTECTIONS(firewalls)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            # Ici on laisse passer tout utilisateur venant du Disque Dur(ça fait trop !)
+            # provider: users_in_memory
+            # CONNEXION: On laisse passer seulement les utilisateurs inscrits dans la BD
+            provider: users_in_database
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
             # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            # switch_user: true # Que fait switch_user ? changer d'utilisateur sans se deconnecter
+            # Mon mode d'authentification ce sera un formulaire de login
+            form_login:
+                login_path: connexion
+                check_path: connexion
+            # Pour la deconnection
+            logout:
+                path: connexion
+                target: connexion # ici i fo mettre le name path de la page d'accueil ou c q on veut !
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

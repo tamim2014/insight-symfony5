@@ -19,15 +19,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
+
     /**
-     * @Route("/", name="accueil")
+     * @Route("/inscription", name="inscripti")
      */
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder): Response
     {
         $user = new User();
-
         $form = $this->createForm(RegistrationType::class, $user);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Hasher le mot de passe avant d'enregistrer ds la BD
@@ -36,12 +35,27 @@ class SecurityController extends AbstractController
             // Enregistrer ds la BD
             $manager->persist($user);
             $manager->flush();
+            // return $this->redirectToRoute('connexion');
         }
-
-        // return $this->render('security/inscription.html.twig', [
-        return $this->render('product/accueil.html.twig', [
+        return $this->render('security/form-inscription.html.twig', [
             'form' => $form->createView(),
             'doubleCompte' => $user->getId() !== null
         ]);
+    }
+
+    // Authentification
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login()
+    {
+        return $this->render('security/form-connexion.html.twig');
+    }
+    /**
+     * @Route("/deconnexion", name="logout")
+     */
+    public function logout()
+    {
     }
 }

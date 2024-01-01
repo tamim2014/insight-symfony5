@@ -22,6 +22,7 @@
 	<a href="#">Clients</a>
 	<a href="#">Contact</a>
 </div>
+{# déplacer cette page vers  les template security/ #}
 <div id="main">
 	<button class="openbtn" id="openbtn" onclick="openNav()">☰</button>
 	<div class="form-inscription">
@@ -32,8 +33,9 @@
             {{form_row(form.confirm_password,{'label':'Confirmation du mot de passe','attr':{'placeholder':'Répétez votre mot de passe'}})}}
                 {# <button type="submit" class="btn btn-primary"> Inscription</button> #}
                 {%  if doubleCompte %}
-                    <button type="submit" class="btn btn-success">
-                        Utilisateur enregistré
+                    <button type="submit" class="btn btn-success" style="transition-duration: 5s;">
+                        Utilisateur enregistré ! 
+                        <i>Connectez-vous <a href="{{path('login')}}" style="color:#ECECEA;"> Ici </a></i>
                     </button>
                 {%  else %}
                     <button type="submit" class="btn btn-primary">
@@ -41,6 +43,7 @@
                     </button>
                 {%  endif %}
             {{form_end(form)}}
+
         </div>
     </div>
 
