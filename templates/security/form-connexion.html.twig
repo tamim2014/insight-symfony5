@@ -5,7 +5,7 @@
 	{# <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/> #}
 	<style>
 		.example-wrapper {
-			margin: 1em auto;
+			margin: 10% auto;
 			max-width: 800px;
 			width: 95%;
 			font: 18px / 1.5 sans-serif;
@@ -17,10 +17,6 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Connexion !</h1>
-
-		{# {{form_start(form)}}
-																																														{{form_end(form)}} #}
 		<form action="{{path('cat1234')}}" method="post">
 			<div class="form-group">
 				<input placeholder="Adresse email ..." required name="_username" type="text" class="form-control">
@@ -32,6 +28,5 @@
 				<button type="submit" class="btn btn-success">Connexion !</button>
 			</div>
 		</form>
-
 	</div>
 {% endblock %}

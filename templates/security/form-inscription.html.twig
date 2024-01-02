@@ -33,7 +33,7 @@
             {{form_row(form.confirm_password,{'label':'Confirmation du mot de passe','attr':{'placeholder':'Répétez votre mot de passe'}})}}
                 {# <button type="submit" class="btn btn-primary"> Inscription</button> #}
                 {%  if doubleCompte %}
-                    <button type="submit" class="btn btn-success" style="transition-duration: 5s;">
+                    <button type="submit" class="btn btn-success" >
                         Utilisateur enregistré ! 
                         <i>Connectez-vous <a href="{{path('login')}}" style="color:#ECECEA;"> Ici </a></i>
                     </button>

@@ -19,7 +19,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/inscription", name="inscripti")
      */
@@ -46,7 +45,7 @@ class SecurityController extends AbstractController
     // Authentification
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/", name="login")
      */
     public function login()
     {
