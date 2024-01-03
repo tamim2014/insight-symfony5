@@ -12,6 +12,7 @@
 		rel="stylesheet" href="{{ asset('css/top.css') }}"/>
 		{# Alignement des colonnes(de chaque tables) #}
 		<link rel="stylesheet" href="{{ asset('css/edit_remove.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('css/sticky.css') }}"/>
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -31,7 +32,7 @@
 		</style>
 
 		<!-- navbar de chez bootswatch  -->
-		<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+		<nav class="navbar navbar-expand-lg bg-primary stickyNavbar" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="navbar-brand active " href="{{path('cat1234')}}">&#127968;</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

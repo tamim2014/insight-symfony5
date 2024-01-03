@@ -1,0 +1,14 @@
+	/******
+     * Scroll contenu
+     * Author: Andjib
+     * Date: Samedi 07 Mars 2020
+	 * Problème: Conflit de style
+	 * Solution: placer ce style dans la page( en attendant de resoudre le conflit
+	 * Non ! fausse alerte . ça marche b1 
+     */
+
+	.stickyNavbar {
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}

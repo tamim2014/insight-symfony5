@@ -4,7 +4,9 @@
 
     .sidebar {
         position: fixed;
-        top: 14.1%;
+        /* top: 14.1%; */
+        top: 1% !important;
+
         /* tester sur d'autre ecran. si cv pas=> calculer la hauteur en fonction de la hauteur du navbar horizontal*/
         left: 0;
         height: 100%;
@@ -14,7 +16,7 @@
         overflow-x: hidden;
         /* background-color: #111; */
         background-color: inherit;
-        border: 1px solid gray;
+        border: none;
         transition: 0.5s;
         z-index: 1;
     }
@@ -64,6 +66,7 @@
     #main {
         padding: 16px;
         transition: margin-left 0.5s;
+        border-left: 1px solid gray;
     }
 
     /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -76,4 +79,3 @@
             font-size: 18px;
         }
     }
-

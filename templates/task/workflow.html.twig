@@ -1,49 +1,87 @@
 {%  extends 'base.html.twig' %}
 
-{% block body %}
-    <style>
-        .example-wrapper {
-            margin: 5em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 1.1em sans-serif;
-        }
-        .example-wrapper code {background: #F5F5F5; padding: 2px 6px;}
-        h4 { text-decoration: underline; }
-    </style>
-
-    <div class="example-wrapper">
-        <h4>Thème du formulaire</h4>
-        <p>
-            <img src="images/theme.png" width="100%"><br>
-            <img src="images/theme_src.png" width="100%"><br>
-            Le moteur bootstrap(<small>bootstrap.min.css</small>) écrase le thème ci-haut. 
-        </p>
-        <h4>Accès en écriture à la Base de données</h4>
-        <p>1)<code>use Doctrine\ORM\<b style="color:#009999">EntityManagerInterface</b>;</code> </p>
-        <p>2)<code>public function ecrire(<b style="color:#009999">entitymanagerinterface</b>$entitymanager): response</code> </p>
-        <p>3)<code>$entityManager->persist('ici les donnéees);</code> </p>
-        <p>4)<code>$entityManager->flush();</code></p>
-        <small><i style="color:gray">
-                Souce1(sans formulaire):<a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blanck">Sensio Labs</a><br>
-                Souce2(avec formulaire):<a href="https://symfony.com/doc/5.4/forms.html#rendering-forms" target="_blanck">Sensio Labs</a>
-        </i> </small>
-        <hr>
-        <h4>Redirection après l'insertion</h4>
-        <p><code> return $this->redirectToRoute('nomDelaRoute');</code></p>
-        <hr>
-
-
-        <h4>Accès en lecture à la Base de données</h4>
-        <p>1)<code>use App\Repository\TaskRepository;</code></p>
-        <p> 2) Injection de dépendance<br>
-            <img src="images/afficher.png" width="100%">
-        </p>
-        <p> 3)<code>templates/task/confirm.html.twig</code><br>
-            <img src="images/affichertwig.png" width="100%">
-        </p>
-        <small><i style="color:gray">
-                Souce:<a href="https://nouvelle-techno.fr/articles/8-integrer-les-donnees-dans-les-vues-symfony-6" target="_blanck">nouvelle-techno.fr</a>
-        </i></small>
-    </div>
+{% block title %}Sidebar-collapsed
 {% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/accueil.css') }}"/>
+
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 1.1em sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		h4 {
+			text-decoration: underline;
+		}
+	</style>
+
+	<div id="mySidebar" class="sidebar" style="border:none;">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
+	<div id="main">
+		<button class="openbtn" id="openbtn" onclick="openNav()">☰</button>
+		<div class="example-wrapper">
+			<h4>Thème du formulaire</h4>
+			<p>
+				<img src="images/theme.png" width="100%"><br>
+				<img src="images/theme_src.png" width="100%"><br>
+				Le moteur bootstrap(<small>bootstrap.min.css</small>) écrase le thème ci-haut.
+			</p>
+			<h4>Accès en écriture à la Base de données</h4>
+			<p>1)<code>use Doctrine\ORM\<b style="color:#009999">EntityManagerInterface</b>;</code>
+			</p>
+			<p>2)<code>public function ecrire(<b style="color:#009999">entitymanagerinterface</b>$entitymanager): response</code>
+			</p>
+			<p>3)<code>$entityManager->persist('ici les donnéees);</code>
+			</p>
+			<p>4)<code>$entityManager->flush();</code>
+			</p>
+			<small>
+				<i style="color:gray">
+					Souce1(sans formulaire):<a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blanck">Sensio Labs</a><br>
+					Souce2(avec formulaire):<a href="https://symfony.com/doc/5.4/forms.html#rendering-forms" target="_blanck">Sensio Labs</a>
+				</i>
+			</small>
+			<hr>
+			<h4>Redirection après l'insertion</h4>
+			<p>
+				<code>
+					return $this->redirectToRoute('nomDelaRoute');</code>
+			</p>
+			<hr>
+
+
+			<h4>Accès en lecture à la Base de données</h4>
+			<p>1)<code>use App\Repository\TaskRepository;</code>
+			</p>
+			<p>
+				2) Injection de dépendance<br>
+				<img src="images/afficher.png" width="100%">
+			</p>
+			<p>
+				3)<code>templates/task/confirm.html.twig</code><br>
+				<img src="images/affichertwig.png" width="100%">
+			</p>
+			<small>
+				<i style="color:gray">
+					Souce:<a href="https://nouvelle-techno.fr/articles/8-integrer-les-donnees-dans-les-vues-symfony-6" target="_blanck">nouvelle-techno.fr</a>
+				</i>
+			</small>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="{{ asset('js/accueil.js') }}"></script>
+
+
+{% endblock  %}
