@@ -1,0 +1,49 @@
+body {
+    /* background-attachment: fixed;*/
+    background-color: whitesmoke;
+
+}
+
+.example-wrapper {
+    margin: 7em auto;
+    max-width: 800px;
+    width: 95%;
+    font: 1.1em sans-serif;
+}
+
+.example-wrapper code {
+    background: #F5F5F5;
+    padding: 2px 6px;
+}
+
+h4 {
+    /*text-decoration: underline; */
+    font-style: italic;
+    padding-bottom: 1em;
+    font-family: serif;
+}
+
+.paragraphe {
+    border: 1px solid #8c8b8b;
+    background: white;
+    padding: 2em;
+    margin: 3.5em 0.5em;
+    border-radius: 5px;
+}
+
+small {
+    color: gray;
+    font-style: italic;
+}
+
+.g {
+    color: #009999;
+}
+
+.b {
+    color: blue;
+}
+
+.r {
+    color: red;
+}

@@ -11,7 +11,7 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     # LES UTILISATEURS( providers )
     providers:
-        users_in_memory: { memory: null }
+        # users_in_memory: { memory: null }
         # AUTHENTIFICATION: On ajoute les utilisateurs enregistrés dans la BD
         users_in_database:
              entity:
@@ -40,7 +40,7 @@ security:
                 check_path: connexion
             # Pour la deconnection
             logout:
-                path: connexion
+                path: deconnexion
                 target: connexion # ici i fo mettre le name path de la page d'accueil ou c q on veut !
 
     # Easy way to control access for large sections of your site

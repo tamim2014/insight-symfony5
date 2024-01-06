@@ -4,40 +4,127 @@
 {% endblock %}
 
 {% block body %}
-	<link rel="stylesheet" href="{{ asset('css/accueil.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/workflow.css') }}"/>
 
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 1.1em sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-		h4 {
-			text-decoration: underline;
-		}
-	</style>
-
-	<div id="mySidebar" class="sidebar" style="border:none;">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="#">About</a>
-		<a href="#">Services</a>
-		<a href="#">Clients</a>
-		<a href="#">Contact</a>
-	</div>
-	<div id="main">
-		<button class="openbtn" id="openbtn" onclick="openNav()">☰</button>
-		<div class="example-wrapper">
+	<style></style>
+	<div class="example-wrapper">
+		<div class="paragraphe">
 			<h4>Thème du formulaire</h4>
 			<p>
 				<img src="images/theme.png" width="100%"><br>
 				<img src="images/theme_src.png" width="100%"><br>
 				Le moteur bootstrap(<small>bootstrap.min.css</small>) écrase le thème ci-haut.
 			</p>
+		</div>
+		<div class="paragraphe">
+			<h4>Label/Placeholder</h4>
+			<small class="b">form_widget()</small>
+			donne des champs figés: Utiliser la fonction
+			<small class="r">form_row()</small><br>
+			<p>
+				<code>
+					form_row(variable.champ)
+				</code><br>
+				Ajouter un label<br>
+				<code>form_row(variable.champ,<small>{'label':'blablabla'}</small>)
+				</code><br>
+				Ajouter un placeholder<br>
+				<code>form_row(variable.champ,{'attr':<small>{'placeholder':'blababla}</small>
+					})</code><br>
+			</p>
+			Ajouter les 2 proprietés en même temps<br>
+			<code>form_row(variable.champ,{'label':'blablabla','attr':<small>{'placeholder':'blabala'}</small>})</code><br>
+			<br>
+			Trop d'accolades qui embrouillent mais i fo juste penser à un couple json
+			<b>{ "clé": "valeur"}</b>
+
+		</div>
+
+		<div class="paragraphe">
+			<img src="images/security_.png" width="700" height="400">
+		</div>
+		<div class="paragraphe">
+			<h4>Formulaire d'authentification(<small>Connexion/Déconnexion</small>)</h4>
+
+			<p>
+				Tout se passe dans la configuration du fichier
+				<small>Sécurity.yaml</small>
+			</p>
+			<b>1) Connexion</b><br>
+
+
+			<code>
+				providers:<br>
+				<small class="g"># on ajoute les utilisateurs enregistrés dans la BD</small><br>
+				&emsp;users_in_database:<br>
+				&emsp;&emsp;<small class="b">entity:</small><br>
+				&emsp;&emsp;&emsp;<small class="b">class:</small>
+				<small>App\Entity\User</small><br>
+				&emsp;&emsp;&emsp;<small class="b">property:</small>
+				<small>
+					email
+				</small><br>
+			</code>
+
+			<p></p>
+
+			<code>
+				firewalls:<br>
+				&emsp; &nbsp;main:<br>
+				&emsp;<small class="g">
+					#PROTECTION: On laisse passer seulement les utilisateurs inscrits dans la BD
+				</small><br>
+				&emsp;&emsp; &nbsp;users_in_database:<br>
+				&emsp;&emsp;&emsp;<small class="g"># MODE DE CONNEXION: Un formulaire de login</small><br>
+				&emsp;&emsp;&emsp;<small class="b">form_login:</small><br>
+				&emsp;&emsp;&emsp;&emsp;<small class="b">login_path:</small>
+				<small>connexion</small><br>
+				&emsp;&emsp;&emsp;&emsp;<small class="b">check_path:</small>
+				<small>connexion</small><br><br>
+			</code>
+
+			<b>2) Déconnexion</b><br>
+			<code>
+				&emsp;&emsp;&emsp;<small class="b">logout:</small><br>
+				&emsp;&emsp;&emsp;&emsp;<small class="g">Ce sont les routes qu'on a défini dans le controleur</small><br>
+				&emsp;&emsp;&emsp;&emsp;<small class="b">path:</small>
+				<small>deconnexion</small><br>
+				&emsp;&emsp;&emsp;&emsp;<small class="b">target:</small>
+				<small>inscription</small><br>
+			</code>
+		</div>
+
+		<div class="paragraphe">
+			<h4>Persistance de données</h4>
+			<p>
+				ObjectManager est déprecié. Remplacé par EntityManagerInterface<br>
+				<code style="padding-left:30.5%;">use Doctrine\ORM\<span class="g">EntityManagerInterface</span>;</code>
+			</p>
+			<p>
+				Instencier un objet:
+				<code style="padding-left:10.5%;">$user = new User();</code><br>
+				L'associer un formulaire:<code style="padding-left:5.5%;">$form = $this->createForm(RegistrationType::class, $user);</code><br>
+				........................:
+				<code style="padding-left:14%;">$form->handleRequest($request);</code><br>
+			</p>
+			<p>
+				Poser les condition(submit):
+				<code style="padding-left:8%;">
+					<small>if ($form->isSubmitted() && $form->isValid())</small>
+				</code><br>
+			</p>
+			<p>
+				recuper  les données:
+				<code style="padding-left:15.5%;">$user = $form->getData();</code><br>
+				Enregistrer les données (<small>dans la BD</small>):
+				<code>$manager->persist($user);</code><br>
+
+				<code style="padding-left:37.5%;">$manager->flush();</code><br>
+			</p>
+		</div>
+
+
+		<div class="paragraphe">
 			<h4>Accès en écriture à la Base de données</h4>
 			<p>1)<code>use Doctrine\ORM\<b style="color:#009999">EntityManagerInterface</b>;</code>
 			</p>
@@ -53,15 +140,20 @@
 					Souce2(avec formulaire):<a href="https://symfony.com/doc/5.4/forms.html#rendering-forms" target="_blanck">Sensio Labs</a>
 				</i>
 			</small>
-			<hr>
-			<h4>Redirection après l'insertion</h4>
+		</div>
+		<div class="paragraphe">
+			<h4>Insertion de valeurs JSON</h4>
 			<p>
 				<code>
-					return $this->redirectToRoute('nomDelaRoute');</code>
+					INSERT INTO user(email,roles,password)<br>
+					&emsp;VALUES('toto@yahoo.fr','<small>{"key1": "value1", "key2": "value2"}</small>','toto');
+				</code>
 			</p>
-			<hr>
-
-
+			<small>
+				Source:<a href="source: https://dev.mysql.com/doc/refman/8.0/en/json.html#json-values" target="_blanck">dev.mysql.com</a>
+			</small>
+		</div>
+		<div class="paragraphe">
 			<h4>Accès en lecture à la Base de données</h4>
 			<p>1)<code>use App\Repository\TaskRepository;</code>
 			</p>
@@ -73,15 +165,89 @@
 				3)<code>templates/task/confirm.html.twig</code><br>
 				<img src="images/affichertwig.png" width="100%">
 			</p>
-			<small>
-				<i style="color:gray">
-					Souce:<a href="https://nouvelle-techno.fr/articles/8-integrer-les-donnees-dans-les-vues-symfony-6" target="_blanck">nouvelle-techno.fr</a>
-				</i>
-			</small>
 		</div>
+		<div class="paragraphe">
+			<h4>Hashage</h4>
+			<p>
+				Déprecié: Security\Core\Encoder\UserPasswordEncoderInterface;.
+				<br>Remplacé par  UserPasswordHasherInterface
+			</p>
+			<p>
+				<code>use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;</code><br>
+			</p>
+			<p>
+				Dans le fichier de configuration
+				<small>Config/package/security.yaml</small><br>
+				&emsp;encoders:<br>
+				&emsp;&emsp;App\Entity\User:<br>
+				&emsp;&emsp;algorithm: bcrypt
+				<br>
+				&emsp;password_hashers:<br>
+				&emsp;&emsp;Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'<br>
+				&emsp;password_hashers:<br>
+				&emsp;&emsp;Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:<br>
+				&emsp;&emsp;&emsp; algorithm: auto<br>
+				&emsp;&emsp;&emsp; cost: 4<br>
+				&emsp;&emsp;&emsp; time_cost: 3<br>
+				&emsp;&emsp;&emsp; memory_cost: 10<br>
+			</p>
+		</div>
+		<div class="paragraphe">
+			<h4>Contraintes de validation</h4>
+			<div style="margin-left:2%">
+				<h4>&bull; Confirmation du mot de passe</h4>
+
+				Le champs
+				<small>$confirm_password</small>
+				n'est pas dans la table user. Il n'a donc ni requête sql, ni
+				<span class="g">@ORM</span>.<br>
+				Il a juste cet
+				<br><code>
+					<span style="color:green">
+						/**<br>
+						&nbsp;&nbsp;* @Assert\EqualTo(propertyPath="password")<br>
+						&nbsp;&nbsp;*/<br>
+					</span>
+				</code><br>
+				<h4>&bull; Unicité de l'adresse email</h4>
+				Cet assertion vérifie l'unité et la validité de l'adresse mail.<br>
+				<code>
+					<span style="color:green">
+						/**<br>
+						&nbsp;&nbsp;* Assert\Email()<br>
+						&nbsp;&nbsp;*/<br>
+					</span>
+				</code>
+			</div>
+
+		</div>
+
+		<div class="paragraphe">
+			<h4>Les classes préalables aux contraintes de validation</h4>
+			<ul type="square">
+				<li>
+					<small>use Symfony\Component\Validator\</small>Constraints as Assert;</li>
+				<li>
+					<small>use Symfony\Component\Security\Core\User\</small>PasswordAuthenticatedUserInterface;</li>
+				<li>
+					<small>use Symfony\Component\Security\Core\User\</small>UserInterface;</li>
+			</ul>
+			<p>Comme toute Interface, UserInterface impose d'implementer ses méthodes:</p>
+			<ul type="none">
+				<li>public function eraseCredentials()</li>
+				<li>public function getSalt()</li>
+				<li>public function getUserIdentifier()</li>
+				<li>public function getRoles()</li>
+			</ul>
+		</div>
+
 	</div>
 
-	<script type="text/javascript" src="{{ asset('js/accueil.js') }}"></script>
+	<small style="position:fixed; bottom:0; left:0;">
+		<i style="color:gray">
+			<a href="https://nouvelle-techno.fr/articles/8-integrer-les-donnees-dans-les-vues-symfony-6" target="_blanck">nouvelle-techno.fr</a>
+		</i>
+	</small>
 
 
 {% endblock  %}
